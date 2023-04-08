@@ -1,0 +1,20 @@
+.css-w9q2zk-Input2 , .css-art2ul-ValueContainer2 {
+    height: 3.5rem ;
+    display: flex;
+    align-items: center;
+}
+
+input {
+    height: 3.5rem ;
+}
+
+.css-eo9k9l-control {
+    min-height: 3.5rem !important;
+    height: 3.5rem !important;
+    display: flex;
+    align-items: center;
+}
+
+.css-1u9des2-indicatorSeparator {
+    display: none;
+}
