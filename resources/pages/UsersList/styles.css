@@ -1,0 +1,22 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+.grayColor{
+    color: grey;
+}
+
+.font-13{
+    font-size: 1.15rem;
+}
+
+.hr{
+    border-bottom: .1rem solid  rgb(172, 172, 172);
+}
+
