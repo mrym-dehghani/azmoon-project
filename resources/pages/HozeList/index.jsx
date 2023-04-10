@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import data from "../../Data/data";
 import { useNavigate } from "react-router-dom";
-
-import "./styles.css";
+import dataHoze from "../../Data/dataHoze";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./styles.css";
 import ModalConfirmation from "../../components/ModalConfirmation";
 
-function UsersList() {
+function HozeList() {
     const styles = {
         backgroundStyle: {
             backgroundColor: "#F4F6F9",
@@ -72,18 +71,19 @@ function UsersList() {
     };
 
     const navigate = useNavigate();
-    const navigateToNewUsers = () => {
-        navigate("/");
+    const navigateToHozeFareiJadid = () => {
+        navigate("/newHoze");
     };
 
     return (
         <div style={styles.backgroundStyle}>
             <div className="hr mb-5">
-                <h1 className="fs-3 mb-2">کاربران</h1>
+                <h1 className="fs-3 mb-2"> لیست حوزه های فرعی </h1>
                 <p className="grayColor font-13">
-                    مدیریت / کاربران / ویرایش کاربران
+                    مدیریت / حوزه ها / لیست حوزه های فرعی
                 </p>
             </div>
+
             <div className="d-flex flex-column">
                 <label htmlFor="search-input" className="fs-3 mb-2">
                     جستجو
@@ -95,11 +95,11 @@ function UsersList() {
                 />
             </div>
 
-            {data
+            {dataHoze
                 .filter((item) => {
                     return searchInput.toLowerCase() === ""
                         ? item
-                        : item.name.toLowerCase().includes(searchInput);
+                        : item.hoze.toLowerCase().includes(searchInput) || item.daneshghah.toLowerCase().includes(searchInput) ;
                 })
                 .map((item) => {
                     return (
@@ -109,23 +109,18 @@ function UsersList() {
                         >
                             <div style={styles.textfiledStyle}>
                                 <input
-                                    value={item.name}
+                                    value={item.hoze}
                                     disabled
                                     style={styles.inputStyle}
                                 />
                                 <input
-                                    value={item.phoneNumber}
-                                    disabled
-                                    style={styles.inputStyle}
-                                />
-                                <input
-                                    value={item.kodeMeli}
+                                    value={item.daneshghah}
                                     disabled
                                     style={styles.inputStyle}
                                 />
                             </div>
                             <button
-                                onClick={navigateToNewUsers}
+                                onClick={navigateToHozeFareiJadid}
                                 style={styles.editBtn}
                             >
                                 {" "}
@@ -159,4 +154,4 @@ function UsersList() {
     );
 }
 
-export default UsersList;
+export default HozeList;
