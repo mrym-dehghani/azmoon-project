@@ -129,7 +129,6 @@ function NewHoze() {
     )
   }
 
-
   return (
     <div>
       <div style={style.divBody} className='vh-100'>
