@@ -1,8 +1,8 @@
 import React from 'react';
 import NewUser from '../pages/NewUser';
-// import UsersList from '../pages/UsersList';
+import UsersList from '../pages/UsersList';
 import NewHoze from '../pages/NewHoze';
-// import HozeList from '../pages/HozeList';
+import HozeList from '../pages/HozeList';
 
 export const routes = {
     NewUser: {
@@ -10,19 +10,19 @@ export const routes = {
         path: '/',
         element: <NewUser/>,
     },
-    // UsersList: {
-    //     id :2,
-    //     path: '/usersList',
-    //     element: <UsersList/>,
-    // },
+    UsersList: {
+        id :2,
+        path: '/usersList',
+        element: <UsersList/>,
+    },
     NewHoze: {
         id :3,
         path: '/newHoze',
         element: <NewHoze/>,
     },
-    // HozeList: {
-    //     id :4,
-    //     path: '/listHoze',
-    //     element: <HozeList/>,
-    // },
+    HozeList: {
+        id :4,
+        path: '/listHoze',
+        element: <HozeList/>,
+    },
 };

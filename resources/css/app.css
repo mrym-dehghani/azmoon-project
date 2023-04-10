@@ -2,24 +2,24 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-family: "IRANSans";
+    font-family: "IRANYekan";
 }
 
-/* @font-face {
-    font-family: "IRANSans";
-    src: url(./../fonts/Iranian\ Sans.ttf);
+@font-face {
+    font-family: "IRANYekan";
+    src: url(./../fonts/Yekan.woff);
     font-weight: normal;
     font-style: normal;
     text-rendering: optimizeLegibility;
     font-display: auto;
-} */
+}
 
 html {
     font-size: 62.5%;
 }
 
 body {
-    font-family: "IRANSans";
+    font-family: "IRANYekan";
     overflow-x: hidden;
 }
 

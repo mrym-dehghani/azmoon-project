@@ -1,10 +1,10 @@
 import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
 import reactRefresh from '@vitejs/plugin-react-refresh';
+import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
-    server: {
-        port: 3000
+    server:{
+        port:3000
     },
     plugins: [
         reactRefresh(),
@@ -12,6 +12,7 @@ export default defineConfig({
             input: ['resources/css/app.css', 'resources/js/app.js'],
             refresh: true,
         }),
+        reactRefresh(),
     ],
 });
 

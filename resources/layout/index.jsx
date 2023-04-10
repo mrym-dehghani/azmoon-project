@@ -37,7 +37,7 @@ function Layout(props) {
         },
         btnNav: {
             textAlign: "end",
-            width: "80%",
+            width: "95%",
             height: "100%",
             border: "none",
             color: "#FFFFFF",

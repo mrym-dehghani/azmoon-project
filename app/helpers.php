@@ -5,7 +5,7 @@ use Illuminate\Support\HtmlString;
 
 function vite_assets(): HtmlString
 {
-    $devServerIsRunning = true;
+    $devServerIsRunning = false;
     
     if (app()->environment('local')) {
         try {
