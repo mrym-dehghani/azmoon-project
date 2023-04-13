@@ -5,6 +5,8 @@ import NewHoze from '../pages/NewHoze';
 import HozeList from '../pages/HozeList';
 import Settings from '../pages/Settings';
 import Organizers from './../pages/Organizers/index';
+import NewExam from '../pages/NewExam';
+import ListExams from '../pages/ListExams';
 
 export const routes = {
     NewUser: {
@@ -36,5 +38,15 @@ export const routes = {
         id:6,
         path: '/organizers',
         element: <Organizers/>,
-    }
+    },
+    NewAzmoon: {
+        id:7,
+        path: '/newExam',
+        element: <NewExam/>,
+    },
+    ListExams: {
+        id:8,
+        path: '/listExams',
+        element: <ListExams/>,
+    },
 };
