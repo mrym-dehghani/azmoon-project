@@ -58,7 +58,6 @@ function NewHoze() {
     const handleDelete = (id) => {
         console.log(id);
         setIsShownModal((current) => !current);
-      
     };
 
     const uiEdit = (e) => {
@@ -114,14 +113,14 @@ function NewHoze() {
                         style={{ backgroundColor: "#00B1D6" }}
                         onClick={handleEdit}
                     >
-                       ذخیره
+                        ذخیره
                     </Button>
 
                     <Button
                         style={{ backgroundColor: "#FF3464" }}
                         onClick={handleDelete}
                     >
-                       انصراف
+                        انصراف
                     </Button>
                 </div>
             </Form>
@@ -131,74 +130,72 @@ function NewHoze() {
     const handleEdit = (id) => {
         console.log(id);
 
-        const parentVirayesh = document.querySelector('.parent-edit');
+        const parentVirayesh = document.querySelector(".parent-edit");
 
         // parentVirayesh.appendChild = uiEdit()
- 
-        setIsShownVirayesh((e)=>{
-            return  <div className="w-100 d-flex align-items-center mt-4 gap-5">
-            <div className="w-18">
-                <div className="content">
-                    <TextField
-                        id={1}
-                        key={11}
-                        label="نام"
-                        type="text"
-                        // value={todo.name}
-                        // onChange={(e) =>
-                        //     setTodo({ ...todo, name: e.target.value })
-                        // }
-                    />
+
+        setIsShownVirayesh((e) => {
+            return (
+                <div className="w-100 d-flex align-items-center mt-4 gap-5">
+                    <div className="w-18">
+                        <div className="content">
+                            <TextField
+                                id={1}
+                                key={11}
+                                label="نام"
+                                type="text"
+                                // value={todo.name}
+                                // onChange={(e) =>
+                                //     setTodo({ ...todo, name: e.target.value })
+                                // }
+                            />
+                        </div>
+                    </div>
+
+                    <div className="w-18">
+                        <div className="content">
+                            <TextField
+                                id={2}
+                                key={12}
+                                label="مکان (طبقه)"
+                                type="text"
+                                // value={todo.place}
+                                // onChange={(e) =>
+                                //     setTodo({ ...todo, place: e.target.value })
+                                // }
+                            />
+                        </div>
+                    </div>
+
+                    <div className="w-18">
+                        <div className="content">
+                            <TextField
+                                id={3}
+                                key={13}
+                                label="ظرفیت (نفر)"
+                                type="text"
+                                // value={todo.zarfiat}
+                                // onChange={(e) =>
+                                //     setTodo({ ...todo, zarfiat: e.target.value })
+                                // }
+                            />
+                        </div>
+                    </div>
+
+                    <div
+                        className="d-flex algin-items-center gap-4"
+                        style={{ marginTop: "2.8rem" }}
+                    >
+                        <Button style={{ backgroundColor: "#00B1D6" }}>
+                            ذخیره
+                        </Button>
+
+                        <Button style={{ backgroundColor: "#FF3464" }}>
+                            انصراف
+                        </Button>
+                    </div>
                 </div>
-            </div>
-
-            <div className="w-18">
-                <div className="content">
-                    <TextField
-                        id={2}
-                        key={12}
-                        label="مکان (طبقه)"
-                        type="text"
-                        // value={todo.place}
-                        // onChange={(e) =>
-                        //     setTodo({ ...todo, place: e.target.value })
-                        // }
-                    />
-                </div>
-            </div>
-
-            <div className="w-18">
-                <div className="content">
-                    <TextField
-                        id={3}
-                        key={13}
-                        label="ظرفیت (نفر)"
-                        type="text"
-                        // value={todo.zarfiat}
-                        // onChange={(e) =>
-                        //     setTodo({ ...todo, zarfiat: e.target.value })
-                        // }
-                    />
-                </div>
-            </div>
-
-            <div
-                className="d-flex algin-items-center gap-4"
-                style={{ marginTop: "2.8rem" }}
-            >
-                <Button
-                    style={{ backgroundColor: "#00B1D6" }}
-                >
-                   ذخیره
-                </Button>
-
-                <Button
-                    style={{ backgroundColor: "#FF3464" }}
-                >
-                   انصراف
-                </Button>
-            </div>
-        </div>
+            );
         });
     };
 
@@ -423,8 +420,9 @@ function NewHoze() {
                 <ul>{uiAddList}</ul>
                 {/* {isShownVirayesh && <div id="parent-ui">{uiEdit()} </div>} */}
 
-                <div className="parent-edit" id="parent-ui">{isShownVirayesh}</div>
-
+                <div className="parent-edit" id="parent-ui">
+                    {isShownVirayesh}
+                </div>
             </div>
         </div>
     );

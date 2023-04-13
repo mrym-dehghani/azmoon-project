@@ -11,6 +11,7 @@ function HozeList() {
             backgroundColor: "#F4F6F9",
             padding: "1.5rem",
             borderRadius: "1.6rem",
+            marginTop: "1.5rem",
         },
         inputStyle: {
             marginBottom: "0",
@@ -99,7 +100,10 @@ function HozeList() {
                 .filter((item) => {
                     return searchInput.toLowerCase() === ""
                         ? item
-                        : item.hoze.toLowerCase().includes(searchInput) || item.daneshghah.toLowerCase().includes(searchInput) ;
+                        : item.hoze.toLowerCase().includes(searchInput) ||
+                              item.daneshghah
+                                  .toLowerCase()
+                                  .includes(searchInput);
                 })
                 .map((item) => {
                     return (
