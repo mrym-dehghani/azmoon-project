@@ -65,9 +65,8 @@ function ListExams() {
 
     let itemDeletePressedId = 0;
 
-    const handleClick = (e) => {
+    const handleClick = ( e ) => {
         itemDeletePressedId = e;
-        console.log(e);
         setIsShown((current) => !current);
     };
 
@@ -79,8 +78,8 @@ function ListExams() {
     return (
         <div style={styles.backgroundStyle}>
             <div className="hr mb-5">
-                <h1 className="fs-3 mb-2"> لیست آزمون ها </h1>
-                <p className="grayColor font-13">
+                <h1 className="fs-4 mb-2"> لیست آزمون ها </h1>
+                <p className="grayColor fs-6">
                     مدیریت / آزمون ها / لیست آزمون ها
                 </p>
             </div>
@@ -100,15 +99,14 @@ function ListExams() {
                 .filter((item) => {
                     return searchInput.toLowerCase() === ""
                         ? item
-                        : item.name.toLowerCase().includes(searchInput) 
-                             
+                        : item.name.toLowerCase().includes(searchInput);
                 })
-                .map( (item , index) => {
+                .map((item , index) => {
                     return (
                         <div
                             className="d-flex justify-content-between mt-4"
-                            key={index}
                             id={item.id}
+                            key={index}
                         >
                             <div style={styles.textfiledStyle}>
                                 <input
@@ -127,6 +125,7 @@ function ListExams() {
                             <button
                                 style={styles.deleteBtn}
                                 onClick={handleClick}
+                                id={item.id}
                             >
                                 حذف
                             </button>
@@ -140,9 +139,11 @@ function ListExams() {
                                         setIsShown(!isShown);
                                     }}
                                     onClickDelete={(e) => {
+                                        console.log(e);
                                         console.log(item.id);
                                         setIsShown(!isShown);
-                                        itemDeletePressedId = e;
+                                        const div = document.getElementById(item.id)
+                                        div.remove()
                                     }}
                                 ></ModalConfirmation>
                             )}
@@ -154,4 +155,3 @@ function ListExams() {
 }
 
 export default ListExams;
-

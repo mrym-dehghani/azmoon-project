@@ -79,8 +79,8 @@ function HozeList() {
     return (
         <div style={styles.backgroundStyle}>
             <div className="hr mb-5">
-                <h1 className="fs-3 mb-2"> لیست حوزه های فرعی </h1>
-                <p className="grayColor font-13">
+                <h1 className="fs-4 mb-2"> لیست حوزه های فرعی </h1>
+                <p className="grayColor fs-6">
                     مدیریت / حوزه ها / لیست حوزه های فرعی
                 </p>
             </div>
@@ -105,11 +105,12 @@ function HozeList() {
                                   .toLowerCase()
                                   .includes(searchInput);
                 })
-                .map((item) => {
+                .map((item , index) => {
                     return (
                         <div
                             className="d-flex justify-content-between mt-4"
-                            key={item.id}
+                            key={index}
+                            id={item.id}
                         >
                             <div style={styles.textfiledStyle}>
                                 <input
@@ -148,6 +149,8 @@ function HozeList() {
                                     onClickDelete={(e) => {
                                         console.log(item.id);
                                         setIsShown(!isShown);
+                                        const div = document.getElementById(item.id)
+                                        div.remove()
                                     }}
                                 ></ModalConfirmation>
                             )}
