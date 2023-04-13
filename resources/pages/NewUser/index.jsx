@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { TextField } from "../../components/TextField";
-import "./style.css";
 import { RSSelect } from "../../components/Select";
 import { Form } from "react-bootstrap";
 import Dropzone from "react-dropzone";
 import { Button } from "../../components/Button";
 import { DatePicker } from "zaman";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import ModalConfirmation from "../../components/ModalConfirmation";
+import "./style.css";
 
 function NewUser() {
     const style = {
@@ -109,20 +109,20 @@ function NewUser() {
 
     const [isShown, setIsShown] = useState(false);
 
+    const [isShowModal, setisShowModal] = useState();
+
     const handleDeleteForm = (e) => {
         e.preventDefault();
-        setIsShown((current) => !current);
-        const inputs = document.querySelectorAll("input");
-        const selects = document.querySelectorAll(".css-1dimb5e-singleValue");
-        const lableProfile = document.querySelector(".form-lable-profile ");
 
-        // selects.forEach((item)=>{{
-        //   item.ariaValueText=item.placeholder
-        // }})
+        const inputs = document.querySelectorAll("input");
+        const lableProfile = document.querySelector(".form-lable-profile ");
+        const textArea = document.querySelector('textarea');
 
         inputs.forEach((input) => {
             input.value = "";
         });
+
+        textArea.value = ""
 
         lableProfile.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#00B1D6"  fill-opacity= "0.3" className="bi bi-image" viewBox="0 0 16 16">
         <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
@@ -133,8 +133,8 @@ function NewUser() {
     return (
         <Form style={style.divBody}>
             <div>
-                <h1 className="fs-2">کاربر جدید</h1>
-                <p style={style.p} className="fs-4">
+                <h1 className="fs-4">کاربر جدید</h1>
+                <p style={style.p} className="fs-6">
                     مدیریت / کاربران / کاربر جدید
                 </p>
             </div>
@@ -406,22 +406,9 @@ function NewUser() {
                 >
                     پاک کردن
                 </Button>
-                {isShown && (
-                    <ModalConfirmation
-                        modalText=" آیا میخواهید این فرم 
-                                           را پاک  کنید "
-                        btnLaghvText=" لغو "
-                        btnDeleteText=" پاک کردن "
-                        onClickLaghv={() => {
-                            setIsShown(!isShown);
-                        }}
-                        onClickDelete={(e) => {
-                            console.log(item.id);
-                            setIsShown(!isShown);
-                            e.preventDefault();
-                        }}
-                    ></ModalConfirmation>
-                )}
+
+                <div>{isShowModal}</div>
+          
             </div>
         </Form>
     );

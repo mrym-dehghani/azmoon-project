@@ -16,7 +16,7 @@ export function RSSelect(props) {
                     border: "none",
                     boxShadow: "0px 0px 15px rgba(0, 0, 0, 0.1)",
                     borderRadius: " .8rem",
-                    fontSize: " 1.4rem",
+                    fontSize: " 1.2rem",
                 }),
                 placeholder(base, state) {
                     return {

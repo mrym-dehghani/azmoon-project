@@ -13,13 +13,13 @@ function NewHoze() {
             marginTop: "1.5rem",
             padding: "1.5rem 1.5rem",
             borderRadius: "1.6rem",
+            minHeight: "100vh",
         },
         p: {
             borderBottom: "1.5px solid lightgray",
             paddingBottom: "1rem",
         },
     };
-
     const [NameHoze, setNameHoze] = useState();
     const [MainHoze, setMainHoze] = useState("دانشگاه شیراز");
     const [hozeList, setHozeList] = useState([]);
@@ -313,9 +313,9 @@ function NewHoze() {
     // };
 
     return (
-        <div style={style.divBody} className="vh-100">
-            <h1 className="fs-2">حوزه فرعی جدید</h1>
-            <p style={style.p} className="fs-4">
+        <div style={style.divBody} >
+            <h1 className="fs-4">حوزه فرعی جدید</h1>
+            <p style={style.p} className="fs-6">
                 مدیریت / حوزه ها / حوزه فرعی جدید
             </p>
 

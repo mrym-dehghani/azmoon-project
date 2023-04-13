@@ -1,10 +1,10 @@
-.css-w9q2zk-Input2 , .css-art2ul-ValueContainer2 {
+.css-w9q2zk-Input2 {
     height: 3.5rem ;
     display: flex;
     align-items: center;
 }
 
-input {
+.css-art2ul-ValueContainer2 , input {
     height: 3.5rem ;
 }
 
@@ -17,4 +17,14 @@ input {
 
 .css-1u9des2-indicatorSeparator {
     display: none;
+}
+
+.css-art2ul-ValueContainer2 {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.css-1jqq78o-placeholder {
+    height: 3.5rem !important;
+    text-align: center;
 }
