@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import data from "../../Data/data";
 import { useNavigate } from "react-router-dom";
-
 import "./styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ModalConfirmation from "../../components/ModalConfirmation";
@@ -12,6 +11,7 @@ function UsersList() {
             backgroundColor: "#F4F6F9",
             padding: "1.5rem",
             borderRadius: "1.6rem",
+            marginTop: "1.5rem",
         },
         inputStyle: {
             marginBottom: "0",

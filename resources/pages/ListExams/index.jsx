@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import dataHoze from "../../Data/dataHoze";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
 import ModalConfirmation from "../../components/ModalConfirmation";
+import listExamsData from "../../Data/listExamsData";
 
-function HozeList() {
+function ListExams() {
     const styles = {
         backgroundStyle: {
             backgroundColor: "#F4F6F9",
@@ -72,16 +72,16 @@ function HozeList() {
     };
 
     const navigate = useNavigate();
-    const navigateToHozeFareiJadid = () => {
-        navigate("/newHoze");
+    const navigateToNewExam = () => {
+        navigate("/newExam");
     };
 
     return (
         <div style={styles.backgroundStyle}>
             <div className="hr mb-5">
-                <h1 className="fs-3 mb-2"> لیست حوزه های فرعی </h1>
+                <h1 className="fs-3 mb-2"> لیست آزمون ها </h1>
                 <p className="grayColor font-13">
-                    مدیریت / حوزه ها / لیست حوزه های فرعی
+                    مدیریت / آزمون ها / لیست آزمون ها
                 </p>
             </div>
 
@@ -96,35 +96,29 @@ function HozeList() {
                 />
             </div>
 
-            {dataHoze
+            {listExamsData
                 .filter((item) => {
                     return searchInput.toLowerCase() === ""
                         ? item
-                        : item.hoze.toLowerCase().includes(searchInput) ||
-                              item.daneshghah
-                                  .toLowerCase()
-                                  .includes(searchInput);
+                        : item.name.toLowerCase().includes(searchInput) 
+                             
                 })
-                .map((item) => {
+                .map( (item , index) => {
                     return (
                         <div
                             className="d-flex justify-content-between mt-4"
-                            key={item.id}
+                            key={index}
+                            id={item.id}
                         >
                             <div style={styles.textfiledStyle}>
                                 <input
-                                    value={item.hoze}
-                                    disabled
-                                    style={styles.inputStyle}
-                                />
-                                <input
-                                    value={item.daneshghah}
+                                    value={item.name}
                                     disabled
                                     style={styles.inputStyle}
                                 />
                             </div>
                             <button
-                                onClick={navigateToHozeFareiJadid}
+                                onClick={navigateToNewExam}
                                 style={styles.editBtn}
                             >
                                 {" "}
@@ -148,6 +142,7 @@ function HozeList() {
                                     onClickDelete={(e) => {
                                         console.log(item.id);
                                         setIsShown(!isShown);
+                                        itemDeletePressedId = e;
                                     }}
                                 ></ModalConfirmation>
                             )}
@@ -158,4 +153,5 @@ function HozeList() {
     );
 }
 
-export default HozeList;
+export default ListExams;
+

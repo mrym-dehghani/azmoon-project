@@ -120,12 +120,12 @@ function Layout(props) {
         return (
             <Dropdown.Menu show className="drop">
                 <Dropdown.Item className="text-end fs-14 " eventKey="2">
-                    <Link className="nav-link" to="/organizers">
+                    <Link className="nav-link" to="/newExam">
                         آزمون جدید
                     </Link>
                 </Dropdown.Item>
                 <Dropdown.Item className="text-end fs-14" eventKey="3">
-                    <Link className="nav-link" to="/listHoze">
+                    <Link className="nav-link" to="/listExams">
                         لیست آزمون ها
                     </Link>
                 </Dropdown.Item>
