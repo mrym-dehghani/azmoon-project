@@ -36,7 +36,11 @@ body {
 }
 
 .w-20 {
-    width: 20%;
+    width: 20% !important;
+}
+
+.w-35 {
+    width: 35%;
 }
 
 .w-70 {
