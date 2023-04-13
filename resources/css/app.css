@@ -31,8 +31,16 @@ body {
     font-size: 1.4rem;
 }
 
+.w-6 {
+    width: 7%;
+}
+
 .w-9 {
     width: 9.5%;
+}
+
+.w-14 {
+    width: 14%;
 }
 
 .w-18 {

@@ -2,6 +2,8 @@ import React from "react";
 import { TextField } from "../../components/TextField";
 import { Button } from "../../components/Button";
 import { useState } from "react";
+import { Nobat } from "../../components/Nobat";
+import { useEffect } from "react";
 
 function NewExam() {
     const style = {
@@ -19,16 +21,28 @@ function NewExam() {
     };
     const [examNumber, setExamNumber] = useState();
     const [uiShow, setUiShow] = useState();
+    const [shifts, setShifts] = useState([]);
 
     const handleSubmit = (e) => {
+        createShifts();
         if (examNumber < 50) {
             setUiShow(() => {
-               return <div>yes</div>
+               return <Nobat/>
             })
-           
+
         } else {
             console.log("no");
         }
+
+        const number = document.querySelector("#exam-number")
+
+    };
+
+    const createShifts = () => {
+        for (let i = 0; i < examNumber; i++) {
+            shifts.push(<Nobat />);
+        }
+        console.log(shifts);
     };
 
     return (
@@ -67,6 +81,10 @@ function NewExam() {
                     </div>
                 </div>
 
+                {/* {shifts.map((i) => {
+                    return <Nobat key={Date.now()} />;
+                })} */}
+
                 <div className="d-flex algin-items-center w-9">
                     <Button
                         className="border-0 fs-5"
@@ -84,7 +102,11 @@ function NewExam() {
                 </div>
             </div>
 
-            <div>{uiShow}</div>
+            <div>{shifts}</div>
+            {/* {shifts.map((i) => {
+                return <Nobat key={Date.now()} />;
+            })} */}
+
         </div>
     );
 }
