@@ -102,10 +102,10 @@ function NewExam() {
                 </div>
             </div>
 
-            <div>{shifts}</div>
-            {/* {shifts.map((i) => {
-                return <Nobat key={Date.now()} />;
-            })} */}
+            {/* <div>{shifts}</div> */}
+            {shifts.map((i) => {
+                return <Nobat key={Date.now()}/>;
+            })}
 
         </div>
     );

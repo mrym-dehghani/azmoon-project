@@ -6,7 +6,7 @@ import { Button } from "../Button";
 import { useState } from "react";
 import { AddHoze } from "../addHoze";
 
-export function Nobat() {
+export function Nobat({index}) {
 
     const style = {
         divHoze: {
@@ -14,11 +14,29 @@ export function Nobat() {
             backgroundColor: "#ecebec",
             paddingRight: "8.7rem",
         },
+        p: {
+            color: "#FF3464",
+            fontSize: "1.4rem",
+            marginBottom: "0rem"
+        },
+        btn: {
+            borderRadius: ".4rem",
+            backgroundColor: "#18C4A5",
+            color: "#FFFFFF",
+            border: "none",
+            padding:"0rem .6rem",
+            fontSize: "1.4rem",
+        }
     };
 
     const [uiShow, setUiShow] = useState();
     const [hozeNumber, setHozeNumber] = useState();
     const [hoze, setHoze] = useState([]);
+
+    const [nobatName, setNobatName] = useState();
+    const [tarikh,setTarikh] = useState();
+    const [nobat,setNobat] = useState("صبح");
+
 
     const handleSubmit = (e) => {
         createHoze();
@@ -29,6 +47,14 @@ export function Nobat() {
         } else {
             console.log("no");
         }
+
+        const data = {
+            nobatName,
+            tarikh,
+            nobat,
+            hozeNumber
+        }
+        console.log(data);
     };
 
     const createHoze = () => {
@@ -40,19 +66,20 @@ export function Nobat() {
 
     return (
         <div>
-            {/* <div>
-                <p>نوبت 1</p>
-            </div> */}
-            <div className="w-100 d-flex align-items-center mt-4 gap-5">
+            <div className="d-flex align-items-center gap-2 mt-4">
+                <p style={style.p}>نوبت</p>
+                <button style={style.btn}>-</button>
+            </div>
+            <div className="w-100 d-flex align-items-center mt-2 gap-5">
                 <div className="w-20">
                     <div className="content">
                         <TextField
                             id="nobat-name"
                             label="نام نوبت"
                             type="text"
-                            // onChange={(e) => {
-                            //     setDastmozdMoaven(e.target.value);
-                            // }}
+                            onChange={(e) => {
+                                setNobatName(e.target.value);
+                            }}
                         />
                     </div>
                 </div>
@@ -63,9 +90,9 @@ export function Nobat() {
                             تاریخ برگزای
                         </label>
                         <DatePicker
-                        // onChange={(e) => {
-                        //     setBirthday(e.value);
-                        // }}
+                        onChange={(e) => {
+                            setTarikh(e.value);
+                        }}
                         />
                     </div>
                 </div>
@@ -80,9 +107,9 @@ export function Nobat() {
                                 { value: "0", label: "صبح" },
                                 { value: "1", label: "عصر" },
                             ]}
-                            // onChange={(e) => {
-                            //     setGender(e.value);
-                            // }}
+                            onChange={(e) => {
+                                setNobat(e.value);
+                            }}
                             defaultValue="صبح"
                             placeholder="صبح"
                         />

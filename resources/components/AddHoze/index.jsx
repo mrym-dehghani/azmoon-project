@@ -1,8 +1,24 @@
 import React from "react";
 import { RSSelect } from "../Select";
 import { Button } from "../Button";
+import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
 
 export function AddHoze() {
+
+    const [hoze , setHoze]=useState("پردیس علوم")
+
+    const navigate = useNavigate();
+    const navigateToOrganizers =()=> {
+        navigate("/organizers")
+    }
+
+    const handleSubmit=()=> {
+        const data = {
+            hoze,
+        }
+        console.log(data);
+    }
 
     return (
         <div>
@@ -11,16 +27,16 @@ export function AddHoze() {
                     <div className="w-35 my-3">
                         <div className="content d-flex flex-column ">
                             <label className="fs-14" htmlFor="hoze">
-                                حوزه 1
+                                حوزه 
                             </label>
                             <RSSelect
                                 options={[
                                     { value: "0", label: "پردیس علوم" },
                                     { value: "1", label: "..." },
                                 ]}
-                                // onChange={(e) => {
-                                //     setGender(e.value);
-                                // }}
+                                onChange={(e) => {
+                                    setHoze(e.value);
+                                }}
                                 defaultValue="پردیس علوم"
                                 placeholder="پردیس علوم"
                             />
@@ -37,7 +53,7 @@ export function AddHoze() {
                                 height: "3.5rem",
                             }}
                             type="submit"
-                            // onClick={handleSubmit}
+                            onClick={navigateToOrganizers}
                         >
                             عوامل حوزه
                         </Button>
@@ -51,7 +67,7 @@ export function AddHoze() {
                                 height: "3.5rem",
                             }}
                             type="submit"
-                            // onClick={handleSubmit}
+                            onClick={handleSubmit}
                         >
                             تایید
                         </Button>
