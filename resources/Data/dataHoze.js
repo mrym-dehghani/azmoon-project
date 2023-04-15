@@ -1,11 +1,11 @@
 const dataHoze = [
     {
-        id: Date.now(),
+        id: 1,
         hoze: " حوزه دانشگاه علوم ",
         daneshghah: " دانشگاه شیراز ",
     },
     {
-        id: Date.now(),
+        id: 2,
         hoze: " حوزه پردیس ",
         daneshghah: " دانشگاه زند ",
     },

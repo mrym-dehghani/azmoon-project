@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import dataHoze from "../../Data/dataHoze";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
-import ModalConfirmation from "../../components/ModalConfirmation";
+import { Button, Modal } from "react-bootstrap";
 
 function HozeList() {
     const styles = {
@@ -61,23 +61,49 @@ function HozeList() {
 
     const [searchInput, setSearchInput] = useState("");
 
-    const [isShown, setIsShown] = useState(false);
-
-    let itemDeletePressedId = 0;
-
-    const handleClick = (e) => {
-        itemDeletePressedId = e;
-        console.log(e);
-        setIsShown((current) => !current);
-    };
-
     const navigate = useNavigate();
     const navigateToHozeFareiJadid = () => {
         navigate("/newHoze");
     };
 
+    const [data, setData] = useState(dataHoze);
+    const [deleteId, setDeleteId] = useState("");
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => {
+        setShow(false);
+    };
+
+    const handleDeleteItem = () => {
+        setData( dataHoze =>{
+            const newArray = [...dataHoze]
+            return newArray.filter(item => item.id !== deleteId)
+        })
+        setShow(false)
+    };
+
+    const handleClickItem = (id) => {
+        setDeleteId(id)
+        setShow(true);
+    };
+
     return (
         <div style={styles.backgroundStyle}>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                </Modal.Header>
+                <Modal.Body>
+                آیا میخواهید این کاربر را حذف کنید؟ 
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="outline-secondary" size="lg" onClick={handleClose}>
+                       لغو
+                    </Button>
+                    <Button variant="outline-danger" size="lg" onClick={handleDeleteItem}>
+                        حذف
+                    </Button>
+                </Modal.Footer>
+            </Modal>
             <div className="hr mb-5">
                 <h1 className="fs-4 mb-2"> لیست حوزه های فرعی </h1>
                 <p className="grayColor fs-6">
@@ -96,7 +122,7 @@ function HozeList() {
                 />
             </div>
 
-            {dataHoze
+            {data
                 .filter((item) => {
                     return searchInput.toLowerCase() === ""
                         ? item
@@ -105,10 +131,10 @@ function HozeList() {
                                   .toLowerCase()
                                   .includes(searchInput);
                 })
-                .map((item , index) => {
+                .map((item, index) => {
                     return (
                         <div
-                            className="d-flex justify-content-between mt-4"
+                            className="forDelete d-flex justify-content-between mt-4"
                             key={index}
                             id={item.id}
                         >
@@ -133,27 +159,14 @@ function HozeList() {
                             </button>
                             <button
                                 style={styles.deleteBtn}
-                                onClick={handleClick}
+                                onClick={
+                                    () => {
+                                        handleClickItem(item.id);
+                                    }
+                                }
                             >
                                 حذف
                             </button>
-                            {isShown && (
-                                <ModalConfirmation
-                                    modalText=" آیا میخواهید این کاربر 
-                             را حذف کنید "
-                                    btnLaghvText=" لغو "
-                                    btnDeleteText=" حذف "
-                                    onClickLaghv={() => {
-                                        setIsShown(!isShown);
-                                    }}
-                                    onClickDelete={(e) => {
-                                        console.log(item.id);
-                                        setIsShown(!isShown);
-                                        const div = document.getElementById(item.id)
-                                        div.remove()
-                                    }}
-                                ></ModalConfirmation>
-                            )}
                         </div>
                     );
                 })}

@@ -1,10 +1,10 @@
 const listExamsData = [
     {
-        id: Date.now(),
+        id: 1,
         name: " کنکور سراسری سال 1402 ",
     },
     {
-        id: Date.now(),
+        id:2,
         name: " استخدامی نظام مهندسی ",
     },
 ];

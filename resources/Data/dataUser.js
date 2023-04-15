@@ -1,40 +1,40 @@
-const data = [
+const dataUser = [
     {
-        id: Date.now(),
+        id: 1,
         name: "maryam ",
         phoneNumber: "09057018424",
         kodeMeli: "2282900383",
     },
     {
-        id: Date.now(),
+        id: 2,
         name: "mina",
         phoneNumber: "09057018424",
         kodeMeli: "2282900383",
     },
     {
-        id: Date.now(),
+        id: 3,
         name: "ali",
         phoneNumber: "09057018424",
         kodeMeli: "2282900383",
     },
     {
-        id: Date.now(),
+        id: 4,
         name: "reza",
         phoneNumber: "09057018424",
         kodeMeli: "2282900383",
     },
     {
-        id: Date.now(),
+        id:5,
         name: "hadis",
         phoneNumber: "09057018424",
         kodeMeli: "2282900383",
     },
     {
-        id: Date.now(),
+        id:6,
         name: "mamad",
         phoneNumber: "09057018424",
         kodeMeli: "2282900383",
     },
 ];
 
-export default data;
+export default dataUser;

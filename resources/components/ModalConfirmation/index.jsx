@@ -2,11 +2,11 @@ import React from "react";
 import "./styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function ModalConfirmation({ modalText , btnDeleteText , btnLaghvText , onClickLaghv , onClickDelete}) {
+function ModalConfirmation({ modalText , btnDeleteText , btnLaghvText , onClickLaghv , onClickDelete , show}) {
 
     return (
         <>
-            <div className="modal">
+            <div className="modal" show={show}>
                 <div className="modal-mtn">
                     <p> {modalText}</p>
                     <div className="Buttons">

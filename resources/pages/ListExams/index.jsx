@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
-import ModalConfirmation from "../../components/ModalConfirmation";
 import listExamsData from "../../Data/listExamsData";
+import { Button, Modal } from "react-bootstrap";
 
 function ListExams() {
     const styles = {
@@ -61,13 +61,25 @@ function ListExams() {
 
     const [searchInput, setSearchInput] = useState("");
 
-    const [isShown, setIsShown] = useState(false);
+    const [data, setData] = useState(listExamsData);
+    const [deleteId, setDeleteId] = useState("");
+    const [show, setShow] = useState(false);
 
-    let itemDeletePressedId = 0;
+    const handleClose = () => {
+        setShow(false);
+    };
 
-    const handleClick = ( e ) => {
-        itemDeletePressedId = e;
-        setIsShown((current) => !current);
+    const handleDeleteItem = () => {
+        setData((listExamsData) => {
+            const newArray = [...listExamsData];
+            return newArray.filter((item) => item.id !== deleteId);
+        });
+        setShow(false);
+    };
+
+    const handleClickItem = (id) => {
+        setDeleteId(id);
+        setShow(true);
     };
 
     const navigate = useNavigate();
@@ -77,6 +89,26 @@ function ListExams() {
 
     return (
         <div style={styles.backgroundStyle}>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton></Modal.Header>
+                <Modal.Body>آیا میخواهید این کاربر را حذف کنید؟</Modal.Body>
+                <Modal.Footer>
+                    <Button
+                        variant="outline-secondary"
+                        size="lg"
+                        onClick={handleClose}
+                    >
+                        لغو
+                    </Button>
+                    <Button
+                        variant="outline-danger"
+                        size="lg"
+                        onClick={handleDeleteItem}
+                    >
+                        حذف
+                    </Button>
+                </Modal.Footer>
+            </Modal>
             <div className="hr mb-5">
                 <h1 className="fs-4 mb-2"> لیست آزمون ها </h1>
                 <p className="grayColor fs-6">
@@ -95,13 +127,13 @@ function ListExams() {
                 />
             </div>
 
-            {listExamsData
+            {data
                 .filter((item) => {
                     return searchInput.toLowerCase() === ""
                         ? item
                         : item.name.toLowerCase().includes(searchInput);
                 })
-                .map((item , index) => {
+                .map((item, index) => {
                     return (
                         <div
                             className="d-flex justify-content-between mt-4"
@@ -124,29 +156,13 @@ function ListExams() {
                             </button>
                             <button
                                 style={styles.deleteBtn}
-                                onClick={handleClick}
-                                id={item.id}
+                                onClick={() => {
+                                    handleClickItem(item.id);
+                                }}
+                                
                             >
                                 حذف
                             </button>
-                            {isShown && (
-                                <ModalConfirmation
-                                    modalText=" آیا میخواهید این کاربر 
-                             را حذف کنید "
-                                    btnLaghvText=" لغو "
-                                    btnDeleteText=" حذف "
-                                    onClickLaghv={() => {
-                                        setIsShown(!isShown);
-                                    }}
-                                    onClickDelete={(e) => {
-                                        console.log(e);
-                                        console.log(item.id);
-                                        setIsShown(!isShown);
-                                        const div = document.getElementById(item.id)
-                                        div.remove()
-                                    }}
-                                ></ModalConfirmation>
-                            )}
                         </div>
                     );
                 })}

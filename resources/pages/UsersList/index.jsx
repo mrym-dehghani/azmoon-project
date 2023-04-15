@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import data from "../../Data/data";
+import dataUser from "../../Data/dataUser";
 import { useNavigate } from "react-router-dom";
 import "./styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ModalConfirmation from "../../components/ModalConfirmation";
+import { Button, Modal } from "react-bootstrap";
 
 function UsersList() {
     const styles = {
@@ -61,14 +61,25 @@ function UsersList() {
 
     const [searchInput, setSearchInput] = useState("");
 
-    const [isShown, setIsShown] = useState(false);
+    const [data, setData] = useState(dataUser);
+    const [deleteId, setDeleteId] = useState("");
+    const [show, setShow] = useState(false);
 
-    let itemDeletePressedId = 0;
+    const handleClose = () => {
+        setShow(false);
+    };
 
-    const handleClick = (e) => {
-        itemDeletePressedId = e;
-        console.log(e);
-        setIsShown((current) => !current);
+    const handleDeleteItem = () => {
+        setData((dataUser) => {
+            const newArray = [...dataUser];
+            return newArray.filter((item) => item.id !== deleteId);
+        });
+        setShow(false);
+    };
+
+    const handleClickItem = (id) => {
+        setDeleteId(id);
+        setShow(true);
     };
 
     const navigate = useNavigate();
@@ -78,6 +89,26 @@ function UsersList() {
 
     return (
         <div style={styles.backgroundStyle}>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton></Modal.Header>
+                <Modal.Body>آیا میخواهید این کاربر را حذف کنید؟</Modal.Body>
+                <Modal.Footer>
+                    <Button
+                        variant="outline-secondary"
+                        size="lg"
+                        onClick={handleClose}
+                    >
+                        لغو
+                    </Button>
+                    <Button
+                        variant="outline-danger"
+                        size="lg"
+                        onClick={handleDeleteItem}
+                    >
+                        حذف
+                    </Button>
+                </Modal.Footer>
+            </Modal>
             <div className="hr mb-5">
                 <h1 className="fs-4 mb-2">کاربران</h1>
                 <p className="grayColor fs-6">
@@ -101,7 +132,7 @@ function UsersList() {
                         ? item
                         : item.name.toLowerCase().includes(searchInput);
                 })
-                .map((item , index) => {
+                .map((item, index) => {
                     return (
                         <div
                             className="d-flex justify-content-between mt-4"
@@ -134,27 +165,12 @@ function UsersList() {
                             </button>
                             <button
                                 style={styles.deleteBtn}
-                                onClick={handleClick}
+                                onClick={() => {
+                                    handleClickItem(item.id);
+                                }}
                             >
                                 حذف
                             </button>
-                            {isShown && (
-                                <ModalConfirmation
-                                    modalText=" آیا میخواهید این کاربر 
-                             را حذف کنید "
-                                    btnLaghvText=" لغو "
-                                    btnDeleteText=" حذف "
-                                    onClickLaghv={() => {
-                                        setIsShown(!isShown);
-                                    }}
-                                    onClickDelete={(e) => {
-                                        console.log(item.id);
-                                        setIsShown(!isShown);
-                                        const div = document.getElementById(item.id)
-                                        div.remove()
-                                    }}
-                                ></ModalConfirmation>
-                            )}
                         </div>
                     );
                 })}
