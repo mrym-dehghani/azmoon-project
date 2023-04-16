@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import { RSSelect } from '../../components/Select';
-import { Button } from '../../components/Button';
-import { Input } from '../../components/Input';
-import "./style.css"
+import React, { useState } from "react";
+import { RSSelect } from "../../components/Select";
+import { Button } from "../../components/Button";
+import { Input } from "../../components/Input";
+import "./style.css";
+import { TableRow } from "../../components/TableRow";
 
 function Organizers() {
-
     const style = {
         divBody: {
             backgroundColor: "#F4F6F9",
@@ -20,16 +20,25 @@ function Organizers() {
         },
     };
 
-    
     const [modir, setModir] = useState("امین حاجی زاده");
     const [namayande, setNamayande] = useState("دکتر مسلم باقری");
     const [moaven, setMoaven] = useState("دکتر مسلم باقری");
     const [makhzan, setMakhzan] = useState("دکتر مسلم باقری");
     const [guyande, setGuyande] = useState("دکتر مسلم باقری");
 
+    const handleSubmit = () => {
+        const data = {
+            modir,
+            namayande,
+            moaven,
+            makhzan,
+            guyande,
+        };
+        console.log(data);
+    };
+
     return (
         <div style={style.divBody}>
-
             <div>
                 <h1 className="fs-4">عوامل برگزاری آزمون</h1>
                 <p style={style.p} className="fs-6">
@@ -37,15 +46,15 @@ function Organizers() {
                 </p>
             </div>
 
-            <div className='d-flex align-items-center mt-4'>
-                <h2 className='flex-grow-1 fs-4'>حوزه پردیس علوم</h2>
+            <div className="d-flex align-items-center mt-4">
+                <h2 className="flex-grow-1 fs-4">حوزه پردیس علوم</h2>
 
-                <div className="d-flex algin-items-center justify-content-end w-25">
+                <div className="btn-submit d-flex algin-items-center justify-content-end w-25">
                     <Button
                         className="w-35 border-0 fs-5"
-                        style={{ backgroundColor: "#18C4A5"}}
+                        style={{ backgroundColor: "#18C4A5" }}
                         type="submit"
-                        // onClick={handleSubmitForm}
+                        onClick={handleSubmit}
                     >
                         تایید
                     </Button>
@@ -53,7 +62,7 @@ function Organizers() {
             </div>
 
             <div className="w-100 d-flex justify-content-around align-items-center mt-4 gap-5">
-                <div className="w-20">
+                <div className="w-20 div-input-select">
                     <div className="content d-flex flex-column">
                         <label className="fs-14" htmlFor="gender">
                             مدیر حوزه
@@ -72,7 +81,7 @@ function Organizers() {
                     </div>
                 </div>
 
-                <div className="w-20">
+                <div className="w-20 div-input-select">
                     <div className="content d-flex flex-column">
                         <label className="fs-14" htmlFor="gender">
                             نماینده تام الاختیار
@@ -91,7 +100,7 @@ function Organizers() {
                     </div>
                 </div>
 
-                <div className="w-20">
+                <div className="w-20  div-input-select">
                     <div className="content d-flex flex-column">
                         <label className="fs-14" htmlFor="gender">
                             معاون حوزه
@@ -110,7 +119,7 @@ function Organizers() {
                     </div>
                 </div>
 
-                <div className="w-20">
+                <div className="w-20 div-input-select">
                     <div className="content d-flex flex-column">
                         <label className="fs-14" htmlFor="gender">
                             مسِئول مخزن فرعی
@@ -119,7 +128,7 @@ function Organizers() {
                             options={[
                                 { value: "0", label: "دکتر مسلم باقری" },
                                 { value: "1", label: "..." },
-                            ]} 
+                            ]}
                             onChange={(e) => {
                                 setMakhzan(e.value);
                             }}
@@ -129,7 +138,7 @@ function Organizers() {
                     </div>
                 </div>
 
-                <div className="w-20">
+                <div className="w-20 div-input-select">
                     <div className="content d-flex flex-column">
                         <label className="fs-14" htmlFor="gender">
                             گوینده
@@ -147,11 +156,9 @@ function Organizers() {
                         />
                     </div>
                 </div>
-
-
             </div>
-            
-            <div className='mt-5'>
+
+            <div className="mt-5 div-parent-table">
                 <table>
                     <tr>
                         <th>ردیف</th>
@@ -166,269 +173,11 @@ function Organizers() {
                         <th>سرپرست سالن</th>
                     </tr>
 
-                    <tr>
-                        <td>1</td>
-                        <td>اتاق 1</td>
-                        <td>طبقه اول</td>
+                    <TableRow />
 
-                        <td>
-                           <Input type="number"/>
-                        </td>
+                    <TableRow />
 
-                        <td>
-                            <Input type="number"/>
-                        </td>
-
-                        <td>20</td>
-
-                        <td>
-                            <RSSelect  
-                                options={[
-                                    { value: "0", label: "امین حاجی زاده" },
-                                    { value: "1", label: "..." },
-                                ]} 
-                                // onChange={(e) => {
-                                //     setGender(e.value);
-                                // }}
-                                defaultValue="امین حاجی زاده"
-                                placeholder="امین حاجی زاده"
-                            />
-                        </td>
-
-                        <td>
-                            <RSSelect  
-                                options={[
-                                    { value: "0", label: "امین حاجی زاده" },
-                                    { value: "1", label: "..." },
-                                ]} 
-                                // onChange={(e) => {
-                                //     setGender(e.value);
-                                // }}
-                                defaultValue="امین حاجی زاده"
-                                placeholder="امین حاجی زاده"
-                            />
-                        </td>
-
-                        <td>
-                            <RSSelect  
-                                options={[
-                                    { value: "0", label: "امین حاجی زاده" },
-                                    { value: "1", label: "..." },
-                                ]} 
-                                // onChange={(e) => {
-                                //     setGender(e.value);
-                                // }}
-                                defaultValue="امین حاجی زاده"
-                                placeholder="امین حاجی زاده"
-                            />
-                        </td>
-
-                        <td>
-                            <RSSelect  
-                                options={[
-                                    { value: "0", label: "امین حاجی زاده" },
-                                    { value: "1", label: "..." },
-                                ]} 
-                                // onChange={(e) => {
-                                //     setGender(e.value);
-                                // }}
-                                defaultValue="امین حاجی زاده"
-                                placeholder="امین حاجی زاده"
-                            />
-                        </td>
-
-                        <td>
-                            <RSSelect  
-                                options={[
-                                    { value: "0", label: "امین حاجی زاده" },
-                                    { value: "1", label: "..." },
-                                ]} 
-                                // onChange={(e) => {
-                                //     setGender(e.value);
-                                // }}
-                                defaultValue="امین حاجی زاده"
-                                placeholder="امین حاجی زاده"
-                            />
-                        </td>
-
-                        
-                    </tr>
-
-                    <tr>
-                        <td>1</td>
-                        <td>اتاق 1</td>
-                        <td>طبقه اول</td>
-
-                        <td>
-                           <Input type="number"/>
-                        </td>
-
-                        <td>
-                            <Input type="number"/>
-                        </td>
-
-                        <td>20</td>
-
-                        <td>
-                            <RSSelect  
-                                options={[
-                                    { value: "0", label: "امین حاجی زاده" },
-                                    { value: "1", label: "..." },
-                                ]} 
-                                // onChange={(e) => {
-                                //     setGender(e.value);
-                                // }}
-                                defaultValue="امین حاجی زاده"
-                                placeholder="امین حاجی زاده"
-                            />
-                        </td>
-
-                        <td>
-                            <RSSelect  
-                                options={[
-                                    { value: "0", label: "امین حاجی زاده" },
-                                    { value: "1", label: "..." },
-                                ]} 
-                                // onChange={(e) => {
-                                //     setGender(e.value);
-                                // }}
-                                defaultValue="امین حاجی زاده"
-                                placeholder="امین حاجی زاده"
-                            />
-                        </td>
-
-                        <td>
-                            <RSSelect  
-                                options={[
-                                    { value: "0", label: "امین حاجی زاده" },
-                                    { value: "1", label: "..." },
-                                ]} 
-                                // onChange={(e) => {
-                                //     setGender(e.value);
-                                // }}
-                                defaultValue="امین حاجی زاده"
-                                placeholder="امین حاجی زاده"
-                            />
-                        </td>
-
-                        <td>
-                            <RSSelect  
-                                options={[
-                                    { value: "0", label: "امین حاجی زاده" },
-                                    { value: "1", label: "..." },
-                                ]} 
-                                // onChange={(e) => {
-                                //     setGender(e.value);
-                                // }}
-                                defaultValue="امین حاجی زاده"
-                                placeholder="امین حاجی زاده"
-                            />
-                        </td>
-
-                        <td>
-                            <RSSelect  
-                                options={[
-                                    { value: "0", label: "امین حاجی زاده" },
-                                    { value: "1", label: "..." },
-                                ]} 
-                                // onChange={(e) => {
-                                //     setGender(e.value);
-                                // }}
-                                defaultValue="امین حاجی زاده"
-                                placeholder="امین حاجی زاده"
-                            />
-                        </td>
-
-                        
-                    </tr>
-
-                    <tr>
-                        <td>1</td>
-                        <td>اتاق 1</td>
-                        <td>طبقه اول</td>
-
-                        <td>
-                           <Input type="number"/>
-                        </td>
-
-                        <td>
-                            <Input type="number"/>
-                        </td>
-
-                        <td>20</td>
-
-                        <td>
-                            <RSSelect  
-                                options={[
-                                    { value: "0", label: "امین حاجی زاده" },
-                                    { value: "1", label: "..." },
-                                ]} 
-                                // onChange={(e) => {
-                                //     setGender(e.value);
-                                // }}
-                                defaultValue="امین حاجی زاده"
-                                placeholder="امین حاجی زاده"
-                            />
-                        </td>
-
-                        <td>
-                            <RSSelect  
-                                options={[
-                                    { value: "0", label: "امین حاجی زاده" },
-                                    { value: "1", label: "..." },
-                                ]} 
-                                // onChange={(e) => {
-                                //     setGender(e.value);
-                                // }}
-                                defaultValue="امین حاجی زاده"
-                                placeholder="امین حاجی زاده"
-                            />
-                        </td>
-
-                        <td>
-                            <RSSelect  
-                                options={[
-                                    { value: "0", label: "امین حاجی زاده" },
-                                    { value: "1", label: "..." },
-                                ]} 
-                                // onChange={(e) => {
-                                //     setGender(e.value);
-                                // }}
-                                defaultValue="امین حاجی زاده"
-                                placeholder="امین حاجی زاده"
-                            />
-                        </td>
-
-                        <td>
-                            <RSSelect  
-                                options={[
-                                    { value: "0", label: "امین حاجی زاده" },
-                                    { value: "1", label: "..." },
-                                ]} 
-                                // onChange={(e) => {
-                                //     setGender(e.value);
-                                // }}
-                                defaultValue="امین حاجی زاده"
-                                placeholder="امین حاجی زاده"
-                            />
-                        </td>
-
-                        <td>
-                            <RSSelect  
-                                options={[
-                                    { value: "0", label: "امین حاجی زاده" },
-                                    { value: "1", label: "..." },
-                                ]} 
-                                // onChange={(e) => {
-                                //     setGender(e.value);
-                                // }}
-                                defaultValue="امین حاجی زاده"
-                                placeholder="امین حاجی زاده"
-                            />
-                        </td>
-
-                        
-                    </tr>
+                    <TableRow />
 
                     <tr>
                         <td></td>
@@ -443,12 +192,10 @@ function Organizers() {
                         <td></td>
                         <td></td>
                     </tr>
-
                 </table>
             </div>
-
         </div>
-    )
+    );
 }
 
-export default Organizers
+export default Organizers;
