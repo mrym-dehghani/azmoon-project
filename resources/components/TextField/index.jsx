@@ -2,7 +2,7 @@ import React from 'react'
 import Form from 'react-bootstrap/Form';
 import "./style.css";
 
-export function TextField({id , placeholder, type , value , label , disabled , inputProps , formText , className , styles , as ,onChange}) {
+export function TextField({id , placeholder, type , value , label , disabled ,defaultValue, inputProps , formText , className , styles , as ,onChange}) {
 
   const style = {
     label: {
@@ -12,7 +12,7 @@ export function TextField({id , placeholder, type , value , label , disabled , i
   return (
     <div className={className}>
         <Form.Label style={style.label} htmlFor={id}>{label}</Form.Label>
-        <Form.Control style={styles} value={value} onChange={onChange} as={as} {...inputProps} id={id} type={type} placeholder={placeholder}/>
+        <Form.Control style={styles} defaultValue={defaultValue} value={value} onChange={onChange} as={as} {...inputProps} id={id} type={type} placeholder={placeholder}/>
         <Form.Text>
          {formText}
         </Form.Text>
