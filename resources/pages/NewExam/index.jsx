@@ -48,7 +48,7 @@ function NewExam() {
     return (
         <div style={style.divBody}>
             <div>
-                <h1 className="fs-4">آزمون فرعی جدید</h1>
+                <h1 className="fs-4">آزمون جدید</h1>
                 <p style={style.p} className="fs-6">
                     مدیریت / آزمون ها / آزمون جدید
                 </p>
