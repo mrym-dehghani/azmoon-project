@@ -159,11 +159,13 @@ function NewHoze() {
                         افزودن بخش جدید
                     </Button>
                 </Form>
-                            
+
                 <div className="div-parent-add-list-hoze">
                     {hozeList.map((item,i) => {
                         if (item?.name) {
-                            return <AddNewHoze item={item} i={i} defaultValue={item.name} place={item.place} zarfiat={item.zarfiat}/>
+                            return <AddNewHoze item={item} i={i} defaultValue={item.name} place={item.place} zarfiat={item.zarfiat} onChange={(e)=> {
+                                item.name = e.target.value
+                            }}/>
                         }
                     })}
                 </div>

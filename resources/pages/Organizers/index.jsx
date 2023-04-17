@@ -62,6 +62,7 @@ function Organizers() {
             </div>
 
             <div className="w-100 d-flex justify-content-around align-items-center mt-4 gap-5">
+                
                 <div className="w-20 div-input-select">
                     <div className="content d-flex flex-column">
                         <label className="fs-14" htmlFor="gender">

@@ -1,27 +1,37 @@
 import React, { useState } from "react";
 import { Button } from "../Button";
 import { TextField } from "../TextField";
+import { Modal } from "react-bootstrap";
 
-function AddNewHoze({ item, i ,defaultValue , place ,zarfiat ,onChange}) {
-
+function AddNewHoze({ item, i, defaultValue, place, zarfiat, onChange }) {
     const [isShownVirayesh, setIsShownVirayesh] = useState();
-    const [deleteId , setDeleteId] = useState("");
-    const [show , setShow] = useState(false);
+    const [deleteId, setDeleteId] = useState("");
+    const [show, setShow] = useState(false);
 
     const handleClickItem = (id) => {
-        console.log(id);
-        setDeleteId(id)
-        setShow(true)
+        // console.log(id);
+        setDeleteId(id);
+        setShow(true);
     };
 
-   
+    const handleClose = () => {
+        setShow(false);
+    };
+
+    const handleDeleteItem = () => {
+        
+    }
+
     const handleEdit = (id) => {
         console.log(id);
 
+        const handleCancle = () => {
+            setIsShownVirayesh(" ");
+        };
+
         setIsShownVirayesh(() => {
             return (
-                <div className="w-100 d-flex align-items-center mt-4 gap-5">
-
+                <div className="div-parent-add-edit w-100 d-flex align-items-center mt-4 gap-5">
                     <div className="w-18-5 div-parent-text-field">
                         <div className="content">
                             <TextField
@@ -46,7 +56,7 @@ function AddNewHoze({ item, i ,defaultValue , place ,zarfiat ,onChange}) {
                                 label="مکان (طبقه)"
                                 type="text"
                                 defaultValue={place}
-                        
+
                                 // onChange={(e) =>
                                 //     setTodo({ ...todo, place: e.target.value })
                                 // }
@@ -77,7 +87,10 @@ function AddNewHoze({ item, i ,defaultValue , place ,zarfiat ,onChange}) {
                             ذخیره
                         </Button>
 
-                        <Button style={{ backgroundColor: "#FF3464" }}>
+                        <Button
+                            style={{ backgroundColor: "#FF3464" }}
+                            onClick={handleCancle}
+                        >
                             انصراف
                         </Button>
                     </div>
@@ -86,7 +99,7 @@ function AddNewHoze({ item, i ,defaultValue , place ,zarfiat ,onChange}) {
         });
     };
     return (
-        <div key={Date.now()}>
+        <div key={Date.now()} id={Date.now()}>
             <div className="d-flex algin-items-center mt-5 gap-5">
                 <div className="div-item">
                     {i + 1}-{item?.name} - {item?.place} - {item?.zarfiat}
@@ -102,17 +115,40 @@ function AddNewHoze({ item, i ,defaultValue , place ,zarfiat ,onChange}) {
 
                     <Button
                         style={{ backgroundColor: "#FF3464" }}
-                        onClick={handleClickItem}
+                        onClick={() => {
+                            handleClickItem(item.id);
+                        }}
                     >
                         حذف
                     </Button>
+
+                    <Modal show={show} onHide={handleClose}>
+                        <Modal.Header closeButton></Modal.Header>
+                        <Modal.Body>
+                            آیا میخواهید این کاربر را حذف کنید؟
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button
+                                variant="secondary"
+                                size="lg"
+                                onClick={handleClose}
+                            >
+                                لغو
+                            </Button>
+                            <Button
+                                variant="danger"
+                                size="lg"
+                                onClick={handleDeleteItem}
+                            >
+                                حذف
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
                 </div>
             </div>
 
             <div>{isShownVirayesh}</div>
         </div>
-
-        
     );
 }
 
