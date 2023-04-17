@@ -1,0 +1,31 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-29689540.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/fonts/Yekan.woff": {
+    "file": "assets/Yekan-612b0f4b.woff",
+    "src": "resources/fonts/Yekan.woff"
+  },
+  "resources/images/logo.png": {
+    "file": "assets/logo-be04ae7f.png",
+    "src": "resources/images/logo.png"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-8fd924b6.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.js": {
+    "assets": [
+      "assets/logo-be04ae7f.png",
+      "assets/Yekan-612b0f4b.woff"
+    ],
+    "css": [
+      "assets/app-8fd924b6.css"
+    ],
+    "file": "assets/app-75f8130b.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  }
+}
