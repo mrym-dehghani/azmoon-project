@@ -1,7 +1,7 @@
 import React from "react";
 import { RSSelect } from "../Select";
 import { Button } from "../Button";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useState } from "react";
 
 export function AddHoze() {
@@ -10,7 +10,7 @@ export function AddHoze() {
 
     const navigate = useNavigate();
     const navigateToOrganizers =()=> {
-        navigate("/organizers")
+        navigate("/organizers",false);
     }
 
     const handleSubmit=()=> {
@@ -44,19 +44,27 @@ export function AddHoze() {
                     </div>
 
                     <div className="d-flex algin-items-center gap-5 flex-grow-1 mt-3">
-                        <Button
+                        <Link
+                            to="/organizers"
+                            target="_blank"
                             className="border-0 fs-5"
                             style={{
                                 backgroundColor: "#00B1D6",
                                 marginTop: "2.8rem",
                                 width: "21%",
                                 height: "3.5rem",
+                                display:"flex",
+                                alignItems:"center",
+                                justifyContent:"center",
+                                textDecoration:"none",
+                                color:"#fff",
+                                borderRadius:"5px",
                             }}
                             type="submit"
-                            onClick={navigateToOrganizers}
+                            // onClick={navigateToOrganizers}
                         >
                             عوامل حوزه
-                        </Button>
+                        </Link>
 
                         <Button
                             className="border-0 fs-5"
