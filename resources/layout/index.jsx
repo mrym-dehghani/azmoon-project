@@ -72,7 +72,7 @@ function Layout(props) {
         return (
             <Dropdown.Menu show className="drop">
                 <Dropdown.Item className="text-end fs-14 " eventKey="2">
-                    <Link className="nav-link" to="/">
+                    <Link className="nav-link" to="/newUser">
                         کاربر جدید
                     </Link>
                 </Dropdown.Item>

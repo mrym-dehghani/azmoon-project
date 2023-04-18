@@ -5,8 +5,6 @@ import { Form } from "react-bootstrap";
 import Dropzone from "react-dropzone";
 import { Button } from "../../components/Button";
 import { DatePicker } from "zaman";
-// import { Link } from "react-router-dom";
-import ModalConfirmation from "../../components/ModalConfirmation";
 import "./style.css";
 
 function NewUser() {
@@ -40,9 +38,6 @@ function NewUser() {
         },
     };
 
-    const [blogs, setBlogs] = useState(
-        JSON.parse(localStorage.getItem("blogs"))
-    );
     const [file, setFile] = useState();
     const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState();
@@ -71,23 +66,6 @@ function NewUser() {
         const submitForm = async () => {
             const image = await blobToBase64(file);
 
-            // const data = {
-            //   // file: res,
-            //   firstName,
-            //   lastName,
-            //   nationalCode,
-            //   birthday,
-            //   gender,
-            //   maritalStatus,
-            //   job,
-            //   jobPlace,
-            //   education,
-            //   phoneNumber,
-            //   bankAccountNumber,
-            //   address,
-            // };
-            // console.log(data);
-
             const formdata = new FormData();
             formdata.append("firstName", firstName);
             formdata.append("lastName", lastName);
@@ -102,12 +80,15 @@ function NewUser() {
             formdata.append("bankAccountNumber", bankAccountNumber);
             formdata.append("address", address);
             formdata.append("file", image);
-            console.log(formdata.getAll("file"));
+            formdata.append("_token", image);
+            console.log(formdata.getAll("birthday"));
+
+            axios.post(`http://localhost:8000/newUser`, { formdata }).then((res) => {
+                console.log(res.data.status);
+            });
         };
         submitForm();
     };
-
-    const [isShown, setIsShown] = useState(false);
 
     const [isShowModal, setisShowModal] = useState();
 
@@ -116,13 +97,13 @@ function NewUser() {
 
         const inputs = document.querySelectorAll("input");
         const lableProfile = document.querySelector(".form-lable-profile ");
-        const textArea = document.querySelector('textarea');
+        const textArea = document.querySelector("textarea");
 
         inputs.forEach((input) => {
             input.value = "";
         });
 
-        textArea.value = ""
+        textArea.value = "";
 
         lableProfile.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#00B1D6"  fill-opacity= "0.3" className="bi bi-image" viewBox="0 0 16 16">
         <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
@@ -186,7 +167,7 @@ function NewUser() {
                         </label>
                         <DatePicker
                             onChange={(e) => {
-                                setBirthday(e.value);
+                                setBirthday(e.value.toLocaleDateString());
                             }}
                         />
                     </div>
@@ -199,8 +180,9 @@ function NewUser() {
                         </label>
                         <RSSelect
                             options={[
-                                { value: "0", label: "زن" },
-                                { value: "1", label: "مرد" },
+                                { value: "female", label: "زن" },
+                                { value: "male", label: "مرد" },
+
                             ]}
                             onChange={(e) => {
                                 setGender(e.value);
@@ -408,7 +390,6 @@ function NewUser() {
                 </Button>
 
                 <div>{isShowModal}</div>
-          
             </div>
         </Form>
     );

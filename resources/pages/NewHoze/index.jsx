@@ -21,11 +21,11 @@ function NewHoze() {
         },
     };
     const [NameHoze, setNameHoze] = useState();
-    const [MainHoze, setMainHoze] = useState("دانشگاه شیراز");
+    const [mainHoze, setMainHoze] = useState("دانشگاه شیراز");
     const [hozeList, setHozeList] = useState([]);
 
     const [todo, setTodo] = useState({
-        key: Date.now(),
+        key: Math.random(),
         name: "",
         place: "",
         zarfiat: "",
@@ -38,20 +38,27 @@ function NewHoze() {
             {
                 ...todo,
                 createAt: new Date().toLocaleDateString(),
-                id: Date.now(),
+                id: Math.random(),
                 disabled: true,
                 checked: false,
-                key: Date.now(),
+                key: Math.random(),
+                hozeName: NameHoze,
+                mainHoze: mainHoze,
             },
         ]);
         setTodo({
-            key: Date.now(),
+            key: Math.random(),
             name: "",
             place: "",
             zarfiat: "",
         });
+
+        axios.post(`http://localhost:8000/newHoze`, { hozeList }).then((res) => {
+            console.log(res.data.status);
+        });
     };
 
+    console.log(hozeList);
  
     return (
         <div style={style.divBody}>
@@ -163,7 +170,7 @@ function NewHoze() {
                 <div className="div-parent-add-list-hoze">
                     {hozeList.map((item,i) => {
                         if (item?.name) {
-                            return <AddNewHoze item={item} i={i} defaultValue={item.name} place={item.place} zarfiat={item.zarfiat} onChange={(e)=> {
+                            return <AddNewHoze key={Math.random()} item={item} i={i} defaultValue={item.name} place={item.place} zarfiat={item.zarfiat} onChange={(e)=> {
                                 item.name = e.target.value
                             }}/>
                         }

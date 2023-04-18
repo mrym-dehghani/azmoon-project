@@ -18,7 +18,9 @@ function AddNewHoze({ item, i, defaultValue, place, zarfiat, onChange }) {
         setShow(false);
     };
 
-    const handleDeleteItem = () => {};
+    const handleDeleteItem = () => {
+
+    }
 
     const handleEdit = (id) => {
         console.log(id);
@@ -29,7 +31,7 @@ function AddNewHoze({ item, i, defaultValue, place, zarfiat, onChange }) {
 
         setIsShownVirayesh(() => {
             return (
-                <div className="div-parent-add-edit w-100 d-flex align-items-center mt-4 gap-5">
+                <div key={Math.random()} className="div-parent-add-edit w-100 d-flex align-items-center mt-4 gap-5">
                     <div className="w-18-5 div-parent-text-field">
                         <div className="content">
                             <TextField
@@ -97,7 +99,7 @@ function AddNewHoze({ item, i, defaultValue, place, zarfiat, onChange }) {
         });
     };
     return (
-        <div key={Date.now()} id={Date.now()}>
+        <div className="add-new-hoze" key={Math.random()} id={Math.random()}>
             <div className="d-flex algin-items-center mt-5 gap-5">
                 <div className="div-item">
                     {i + 1}-{item?.name} - {item?.place} - {item?.zarfiat}

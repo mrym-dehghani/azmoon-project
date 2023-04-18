@@ -13,7 +13,7 @@ import LogIn from '../pages/LogIn';
 export const routes = {
     NewUser: {
         id :1,
-        path: '/',
+        path: '/newUser',
         element: <NewUser/>,
     },
     UsersList: {
