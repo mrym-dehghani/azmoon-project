@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "../Button";
 import { TextField } from "../TextField";
-import { Modal } from "react-bootstrap";
+import ModalDelete from "../ModalDelete";
 
 function AddNewHoze({ item, i, defaultValue, place, zarfiat, onChange }) {
     const [isShownVirayesh, setIsShownVirayesh] = useState();
@@ -18,9 +18,7 @@ function AddNewHoze({ item, i, defaultValue, place, zarfiat, onChange }) {
         setShow(false);
     };
 
-    const handleDeleteItem = () => {
-        
-    }
+    const handleDeleteItem = () => {};
 
     const handleEdit = (id) => {
         console.log(id);
@@ -122,28 +120,14 @@ function AddNewHoze({ item, i, defaultValue, place, zarfiat, onChange }) {
                         حذف
                     </Button>
 
-                    <Modal show={show} onHide={handleClose}>
-                        <Modal.Header closeButton></Modal.Header>
-                        <Modal.Body>
-                            آیا میخواهید این کاربر را حذف کنید؟
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button
-                                variant="secondary"
-                                size="lg"
-                                onClick={handleClose}
-                            >
-                                لغو
-                            </Button>
-                            <Button
-                                variant="danger"
-                                size="lg"
-                                onClick={handleDeleteItem}
-                            >
-                                حذف
-                            </Button>
-                        </Modal.Footer>
-                    </Modal>
+                    <ModalDelete
+                        show={show}
+                        handleClose={handleClose}
+                        modalText="  آیا میخواهید این حوزه را حذف کنید؟ "
+                        btnDeleteMtn=" حذف "
+                        btnLaghvMtn=" لغو "
+                        handleDeleteItem={handleDeleteItem}
+                    ></ModalDelete>
                 </div>
             </div>
 

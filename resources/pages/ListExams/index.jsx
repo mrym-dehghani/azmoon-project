@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
 import listExamsData from "../../Data/listExamsData";
-import { Button, Modal } from "react-bootstrap";
+import ModalDelete from "../../components/ModalDelete";
 
 function ListExams() {
     const styles = {
@@ -89,26 +89,14 @@ function ListExams() {
 
     return (
         <div style={styles.backgroundStyle}>
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton></Modal.Header>
-                <Modal.Body>آیا میخواهید این کاربر را حذف کنید؟</Modal.Body>
-                <Modal.Footer>
-                    <Button
-                        variant="outline-secondary"
-                        size="lg"
-                        onClick={handleClose}
-                    >
-                        لغو
-                    </Button>
-                    <Button
-                        variant="outline-danger"
-                        size="lg"
-                        onClick={handleDeleteItem}
-                    >
-                        حذف
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            <ModalDelete
+                show={show}
+                handleClose={handleClose}
+                modalText="  آیا میخواهید این آزمون را حذف کنید؟ "
+                btnDeleteMtn=" حذف "
+                btnLaghvMtn=" لغو "
+                handleDeleteItem={handleDeleteItem}
+            ></ModalDelete>
             <div className="hr mb-5">
                 <h1 className="fs-4 mb-2"> لیست آزمون ها </h1>
                 <p className="grayColor fs-6">

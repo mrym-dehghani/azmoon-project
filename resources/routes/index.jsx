@@ -7,6 +7,8 @@ import Settings from '../pages/Settings';
 import Organizers from './../pages/Organizers/index';
 import NewExam from '../pages/NewExam';
 import ListExams from '../pages/ListExams';
+import SignUp from '../pages/SignUp';
+import LogIn from '../pages/LogIn';
 
 export const routes = {
     NewUser: {
@@ -48,5 +50,15 @@ export const routes = {
         id:8,
         path: '/listExams',
         element: <ListExams/>,
+    },
+    SignUp: {
+        id:9,
+        path: '/signUp',
+        element: <SignUp/>,
+    },
+    LogIn: {
+        id:10,
+        path: '/logIn',
+        element: <LogIn/>,
     },
 };

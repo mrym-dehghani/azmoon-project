@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import dataHoze from "../../Data/dataHoze";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
-import { Button, Modal } from "react-bootstrap";
+import ModalDelete from "../../components/ModalDelete";
 
 function HozeList() {
     const styles = {
@@ -62,8 +62,14 @@ function HozeList() {
     const [searchInput, setSearchInput] = useState("");
 
     const navigate = useNavigate();
-    const navigateToHozeFareiJadid = () => {
+    const navigateToHozeFareiJadid = (id) => {
         navigate("/newHoze");
+        console.log(id);
+        // axios.post(`http://localhost:8000/newHoze`, { id })
+        // .then(res => {
+        //   console.log(res);
+        //   console.log(res.id);
+        // })
     };
 
     const [data, setData] = useState(dataHoze);
@@ -75,35 +81,28 @@ function HozeList() {
     };
 
     const handleDeleteItem = () => {
-        setData( dataHoze =>{
-            const newArray = [...dataHoze]
-            return newArray.filter(item => item.id !== deleteId)
-        })
-        setShow(false)
+        setData((dataHoze) => {
+            const newArray = [...dataHoze];
+            return newArray.filter((item) => item.id !== deleteId);
+        });
+        setShow(false);
     };
 
     const handleClickItem = (id) => {
-        setDeleteId(id)
+        setDeleteId(id);
         setShow(true);
     };
 
     return (
         <div style={styles.backgroundStyle}>
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                </Modal.Header>
-                <Modal.Body>
-                آیا میخواهید این کاربر را حذف کنید؟ 
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="outline-secondary" size="lg" onClick={handleClose}>
-                       لغو
-                    </Button>
-                    <Button variant="outline-danger" size="lg" onClick={handleDeleteItem}>
-                        حذف
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            <ModalDelete
+                show={show}
+                handleClose={handleClose}
+                modalText="  آیا میخواهید این حوزه را حذف کنید؟ "
+                btnDeleteMtn=" حذف "
+                btnLaghvMtn=" لغو "
+                handleDeleteItem={handleDeleteItem}
+            ></ModalDelete>
             <div className="hr mb-5">
                 <h1 className="fs-4 mb-2"> لیست حوزه های فرعی </h1>
                 <p className="grayColor fs-6">
@@ -151,7 +150,12 @@ function HozeList() {
                                 />
                             </div>
                             <button
-                                onClick={navigateToHozeFareiJadid}
+                                onClick={
+                                    // navigateToHozeFareiJadid
+                                    () => {
+                                        navigateToHozeFareiJadid(id);
+                                    }
+                                }
                                 style={styles.editBtn}
                             >
                                 {" "}
@@ -159,11 +163,9 @@ function HozeList() {
                             </button>
                             <button
                                 style={styles.deleteBtn}
-                                onClick={
-                                    () => {
-                                        handleClickItem(item.id);
-                                    }
-                                }
+                                onClick={() => {
+                                    handleClickItem(item.id);
+                                }}
                             >
                                 حذف
                             </button>
