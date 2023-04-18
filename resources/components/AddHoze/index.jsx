@@ -66,7 +66,7 @@ export function AddHoze() {
                             عوامل حوزه
                         </Link>
 
-                        <Button
+                        {/* <Button
                             className="border-0 fs-5"
                             style={{
                                 backgroundColor: "#18C4A5",
@@ -78,7 +78,7 @@ export function AddHoze() {
                             onClick={handleSubmit}
                         >
                             تایید
-                        </Button>
+                        </Button> */}
                     </div>
                 </div>
             </div>

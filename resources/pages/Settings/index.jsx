@@ -49,6 +49,10 @@ function Settings() {
         }
 
         console.log(data);
+
+        axios.post(`http://localhost:8000/settings`, { data }).then((res) => {
+            console.log(res.data.status);
+        });
     }
 
     return (
@@ -221,8 +225,6 @@ function Settings() {
             </div>
 
         </div>
-
-       
     );
 }
 

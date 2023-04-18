@@ -1,26 +1,8 @@
 import React from "react";
 import { Input } from "../Input";
 import { RSSelect } from "../Select";
-import { useState } from "react";
 
-export function TableRow() {
-    const [fromNumber, setFromNumber] = useState();
-    const [toNumber, setToNumber] = useState();
-    const [rabet, setRabet] = useState();
-    const [moragheb, setMoragheb] = useState();
-    const [shomaresh, setShomaresh] = useState();
-    const [tatbigh, setTatbigh] = useState();
-    const [sarparast, setSarparast] = useState();
-
-    const data ={
-        fromNumber,
-        toNumber,
-        rabet,
-        moragheb,
-        shomaresh,
-        tatbigh,
-        sarparast
-    }
+export function TableRow({onChangeFrom , onChangeTo , onChangeRabet , onChangeMoragheb , onChangeShomaresh , onChangeTatbigh , onChangeSarparast}) {
 
     return (
         <tr>
@@ -31,18 +13,14 @@ export function TableRow() {
             <td className="parent-input-from-number">
                 <Input
                     type="number"
-                    onChange={(e) => {
-                        setFromNumber(e.target.value);
-                    }}
+                    onChange={onChangeFrom}
                 />
             </td>
 
             <td className="parent-input-to-number">
                 <Input
                     type="number"
-                    onChange={(e) => {
-                        setToNumber(e.target.value);
-                    }}
+                    onChange={onChangeTo}
                 />
             </td>
 
@@ -54,9 +32,7 @@ export function TableRow() {
                         { value: "0", label: "امین حاجی زاده" },
                         { value: "1", label: "..." },
                     ]}
-                    onChange={(e) => {
-                        setRabet(e.value);
-                    }}
+                    onChange={onChangeRabet}
                     defaultValue="امین حاجی زاده"
                     placeholder="امین حاجی زاده"
                 />
@@ -68,9 +44,7 @@ export function TableRow() {
                         { value: "0", label: "امین حاجی زاده" },
                         { value: "1", label: "..." },
                     ]}
-                    onChange={(e) => {
-                        setMoragheb(e.value);
-                    }}
+                    onChange={onChangeMoragheb}
                     defaultValue="امین حاجی زاده"
                     placeholder="امین حاجی زاده"
                 />
@@ -82,9 +56,7 @@ export function TableRow() {
                         { value: "0", label: "امین حاجی زاده" },
                         { value: "1", label: "..." },
                     ]}
-                    onChange={(e) => {
-                        setShomaresh(e.value);
-                    }}
+                    onChange={onChangeShomaresh}
                     defaultValue="امین حاجی زاده"
                     placeholder="امین حاجی زاده"
                 />
@@ -96,9 +68,7 @@ export function TableRow() {
                         { value: "0", label: "امین حاجی زاده" },
                         { value: "1", label: "..." },
                     ]}
-                    onChange={(e) => {
-                        setTatbigh(e.value);
-                    }}
+                    onChange={onChangeTatbigh}
                     defaultValue="امین حاجی زاده"
                     placeholder="امین حاجی زاده"
                 />
@@ -110,9 +80,7 @@ export function TableRow() {
                         { value: "0", label: "امین حاجی زاده" },
                         { value: "1", label: "..." },
                     ]}
-                    onChange={(e) => {
-                        setSarparast(e.value);
-                    }}
+                    onChange={onChangeSarparast}
                     defaultValue="امین حاجی زاده"
                     placeholder="امین حاجی زاده"
                 />

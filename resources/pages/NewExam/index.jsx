@@ -19,7 +19,10 @@ function NewExam() {
             paddingBottom: "1rem",
         },
     };
+
+    const [id , setId] = useState(Math.random());
     const [examNumber, setExamNumber] = useState();
+    const [examName,setExamName] = useState();
     const [uiShow, setUiShow] = useState();
     const [shifts, setShifts] = useState([]);
 
@@ -34,15 +37,16 @@ function NewExam() {
             console.log("no");
         }
 
-        const number = document.querySelector("#exam-number")
-
+        console.log(shifts);
     };
 
     const createShifts = () => {
-        for (let i = 0; i < examNumber; i++) {
-            shifts.push(<Nobat />);
+        if (examName) {
+            for (let i = 0; i < examNumber; i++) {
+                shifts.push(<Nobat key={Math.random()} id={Math.random()}/>);
+            }
+            console.log(shifts);
         }
-        console.log(shifts);
     };
 
     return (
@@ -54,16 +58,16 @@ function NewExam() {
                 </p>
             </div>
 
-            <div className="w-100 d-flex align-items-center mt-4 gap-5">
+            <div className="w-100 d-flex align-items-center mt-4 gap-5" id={id}>
                 <div className="w-20">
                     <div className="content">
                         <TextField
                             id="exam-name"
                             label="نام آزمون"
                             type="text"
-                            // onChange={(e) => {
-                            //     setDastmozdMoaven(e.target.value);
-                            // }}
+                            onChange={(e) => {
+                                setExamName(e.target.value);
+                            }}
                         />
                     </div>
                 </div>
@@ -80,10 +84,6 @@ function NewExam() {
                         />
                     </div>
                 </div>
-
-                {/* {shifts.map((i) => {
-                    return <Nobat key={Date.now()} />;
-                })} */}
 
                 <div className="d-flex algin-items-center w-9">
                     <Button
@@ -102,9 +102,8 @@ function NewExam() {
                 </div>
             </div>
 
-            {/* <div>{shifts}</div> */}
             {shifts.map((i) => {
-                return <Nobat key={Date.now()}/>;
+                return <Nobat key={Math.random()}/>;
             })}
 
         </div>

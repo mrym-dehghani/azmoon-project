@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { RSSelect } from "../../components/Select";
 import { Button } from "../../components/Button";
-import { Input } from "../../components/Input";
-import "./style.css";
 import { TableRow } from "../../components/TableRow";
+import "./style.css";
 
 function Organizers() {
     const style = {
@@ -25,6 +24,13 @@ function Organizers() {
     const [moaven, setMoaven] = useState("دکتر مسلم باقری");
     const [makhzan, setMakhzan] = useState("دکتر مسلم باقری");
     const [guyande, setGuyande] = useState("دکتر مسلم باقری");
+    const [fromNumber, setFromNumber] = useState("");
+    const [toNumber, setToNumber] = useState("");
+    const [rabet, setRabet] = useState("امین حاجی زاده");
+    const [moragheb, setMoragheb] = useState("امین حاجی زاده");
+    const [shomaresh, setShomaresh] = useState("امین حاجی زاده");
+    const [tatbigh, setTatbigh] = useState("امین حاجی زاده");
+    const [sarparast, setSarparast] = useState("امین حاجی زاده");
 
     const handleSubmit = () => {
         const data = {
@@ -33,6 +39,13 @@ function Organizers() {
             moaven,
             makhzan,
             guyande,
+            fromNumber,
+            toNumber,
+            rabet,
+            moragheb,
+            shomaresh,
+            tatbigh,
+            sarparast,
         };
         console.log(data);
     };
@@ -62,7 +75,6 @@ function Organizers() {
             </div>
 
             <div className="w-100 d-flex justify-content-around align-items-center mt-4 gap-5">
-                
                 <div className="w-20 div-input-select">
                     <div className="content d-flex flex-column">
                         <label className="fs-14" htmlFor="gender">
@@ -174,11 +186,77 @@ function Organizers() {
                         <th>سرپرست سالن</th>
                     </tr>
 
-                    <TableRow />
+                    <TableRow
+                        onChangeFrom={(e) => {
+                            setFromNumber(e.target.value);
+                        }}
+                        onChangeTo={(e) => {
+                            setToNumber(e.target.value);
+                        }}
+                        onChangeRabet={(e) => {
+                            setRabet(e.value);
+                        }}
+                        onChangeMoragheb={(e) => {
+                            setMoragheb(e.value);
+                        }}
+                        onChangeShomaresh={(e) => {
+                            setShomaresh(e.value);
+                        }}
+                        onChangeTatbigh={(e) => {
+                            setTatbigh(e.value);
+                        }}
+                        onChangeSarparast={(e) => {
+                            setSarparast(e.value);
+                        }}
+                    />
 
-                    <TableRow />
+                    <TableRow
+                        onChangeFrom={(e) => {
+                            setFromNumber(e.target.value);
+                        }}
+                        onChangeTo={(e) => {
+                            setToNumber(e.target.value);
+                        }}
+                        onChangeRabet={(e) => {
+                            setRabet(e.value);
+                        }}
+                        onChangeMoragheb={(e) => {
+                            setMoragheb(e.value);
+                        }}
+                        onChangeShomaresh={(e) => {
+                            setShomaresh(e.value);
+                        }}
+                        onChangeTatbigh={(e) => {
+                            setTatbigh(e.value);
+                        }}
+                        onChangeSarparast={(e) => {
+                            setSarparast(e.value);
+                        }}
+                    />
 
-                    <TableRow />
+                    <TableRow
+                        onChangeFrom={(e) => {
+                            setFromNumber(e.target.value);
+                        }}
+                        onChangeTo={(e) => {
+                            setToNumber(e.target.value);
+                        }}
+                        onChangeRabet={(e) => {
+                            setRabet(e.value);
+                        }}
+                        onChangeMoragheb={(e) => {
+                            setMoragheb(e.value);
+                        }}
+                        onChangeShomaresh={(e) => {
+                            setShomaresh(e.value);
+                        }}
+                        onChangeTatbigh={(e) => {
+                            setTatbigh(e.value);
+                        }}
+                        onChangeSarparast={(e) => {
+                            setSarparast(e.value);
+                        }}
+                    />
 
                     <tr>
                         <td></td>

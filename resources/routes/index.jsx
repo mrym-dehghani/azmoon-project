@@ -11,7 +11,7 @@ import ListExams from '../pages/ListExams';
 export const routes = {
     NewUser: {
         id :1,
-        path: '/',
+        path: '/newUser',
         element: <NewUser/>,
     },
     UsersList: {
