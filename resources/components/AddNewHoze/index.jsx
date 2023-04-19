@@ -3,7 +3,7 @@ import { Button } from "../Button";
 import { TextField } from "../TextField";
 import ModalDelete from "../ModalDelete";
 
-function AddNewHoze({ item, i, defaultValue, place, zarfiat, onChange }) {
+function AddNewHoze({ item, i, defaultValue, place, zarfiat, onChange}) {
     const [isShownVirayesh, setIsShownVirayesh] = useState();
     const [deleteId, setDeleteId] = useState("");
     const [show, setShow] = useState(false);
@@ -19,7 +19,7 @@ function AddNewHoze({ item, i, defaultValue, place, zarfiat, onChange }) {
     };
 
     const handleDeleteItem = () => {
-
+       
     }
 
     const handleEdit = (id) => {
@@ -99,7 +99,7 @@ function AddNewHoze({ item, i, defaultValue, place, zarfiat, onChange }) {
         });
     };
     return (
-        <div className="add-new-hoze" key={Math.random()} id={Math.random()}>
+        <div className="add-new-hoze" key={Math.random()} id={item?.id}>
             <div className="d-flex algin-items-center mt-5 gap-5">
                 <div className="div-item">
                     {i + 1}-{item?.name} - {item?.place} - {item?.zarfiat}

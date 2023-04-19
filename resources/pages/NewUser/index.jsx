@@ -182,6 +182,7 @@ function NewUser() {
                             options={[
                                 { value: "female", label: "زن" },
                                 { value: "male", label: "مرد" },
+                                { value: "other", label: "دیگر" },
 
                             ]}
                             onChange={(e) => {

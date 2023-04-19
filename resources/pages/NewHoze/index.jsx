@@ -5,6 +5,7 @@ import { Form } from "react-bootstrap";
 import { Button } from "../../components/Button";
 import AddNewHoze from "../../components/AddNewHoze";
 import "./style.css";
+import { Link } from "react-router-dom";
 
 function NewHoze() {
     const style = {
@@ -53,13 +54,15 @@ function NewHoze() {
             zarfiat: "",
         });
 
-        axios.post(`http://localhost:8000/newHoze`, { hozeList }).then((res) => {
-            console.log(res.data.status);
-        });
+        axios
+            .post(`http://localhost:8000/newHoze`, { hozeList })
+            .then((res) => {
+                console.log(res.data.status);
+            });
     };
 
     console.log(hozeList);
- 
+
     return (
         <div style={style.divBody}>
             <h1 className="fs-4">حوزه فرعی جدید</h1>
@@ -103,7 +106,6 @@ function NewHoze() {
 
             <div className="div-parent-form">
                 <Form className="w-100 d-flex align-items-center mt-4 gap-5">
-
                     <div className="w-18 div-parent-text-field">
                         <div className="content">
                             <TextField
@@ -168,15 +170,24 @@ function NewHoze() {
                 </Form>
 
                 <div className="div-parent-add-list-hoze">
-                    {hozeList.map((item,i) => {
+                    {hozeList.map((item, i) => {
                         if (item?.name) {
-                            return <AddNewHoze key={Math.random()} item={item} i={i} defaultValue={item.name} place={item.place} zarfiat={item.zarfiat} onChange={(e)=> {
-                                item.name = e.target.value
-                            }}/>
+                            return (
+                                <AddNewHoze
+                                    key={Math.random()}
+                                    item={item}
+                                    i={i}
+                                    defaultValue={item.name}
+                                    place={item.place}
+                                    zarfiat={item.zarfiat}
+                                    onChange={(e) => {
+                                        item.name = e.target.value;
+                                    }}
+                                />
+                            );
                         }
                     })}
                 </div>
-
             </div>
         </div>
     );
