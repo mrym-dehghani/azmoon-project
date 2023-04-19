@@ -29,6 +29,8 @@ function Settings() {
     const [dastmozdSarparast, setDastmozdSarparast] = useState();
     const [darsadMaliat, setDarsadMaliat] = useState();
 
+    const inputToken = document.querySelector ("input").value
+    console.log(inputToken);
 
     const handleSubmitForm =(e)=> {
         
@@ -45,7 +47,8 @@ function Settings() {
             dastmozdShomaresh,
             dastmozdTatbigh,
             dastmozdSarparast,
-            darsadMaliat
+            darsadMaliat,
+            _token: inputToken
         }
 
         console.log(data);

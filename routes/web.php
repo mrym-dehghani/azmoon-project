@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
+Route::get("/organizers/{exam_id}/{area_id}",function(){
+    return view("welcome");
+});
+
 Route::get('/{path?}',function(){
     return view('welcome');
 });

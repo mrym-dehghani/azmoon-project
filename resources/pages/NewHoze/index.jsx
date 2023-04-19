@@ -3,9 +3,8 @@ import { TextField } from "../../components/TextField";
 import { RSSelect } from "../../components/Select";
 import { Form } from "react-bootstrap";
 import { Button } from "../../components/Button";
-import AddNewHoze from "../../components/AddNewHoze";
+import ModalDelete from "./../../components/ModalDelete/index";
 import "./style.css";
-import { Link } from "react-router-dom";
 
 function NewHoze() {
     const style = {
@@ -21,9 +20,15 @@ function NewHoze() {
             paddingBottom: "1rem",
         },
     };
+
     const [NameHoze, setNameHoze] = useState();
     const [mainHoze, setMainHoze] = useState("دانشگاه شیراز");
     const [hozeList, setHozeList] = useState([]);
+    const [isShownVirayesh, setIsShownVirayesh] = useState();
+    const [deleteId, setDeleteId] = useState("");
+    const [show, setShow] = useState(false);
+
+    const inputToken = document.querySelector("input").value;
 
     const [todo, setTodo] = useState({
         key: Math.random(),
@@ -45,6 +50,7 @@ function NewHoze() {
                 key: Math.random(),
                 hozeName: NameHoze,
                 mainHoze: mainHoze,
+                _token: inputToken,
             },
         ]);
         setTodo({
@@ -57,11 +63,137 @@ function NewHoze() {
         axios
             .post(`http://localhost:8000/newHoze`, { hozeList })
             .then((res) => {
-                console.log(res.data.status);
+                console.log(res.data);
             });
     };
 
     console.log(hozeList);
+
+    function AddNewHoze({ item, i, defaultValue, place, zarfiat, onChange }) {
+      
+        const handleClickItem = (id) => {
+            setDeleteId(id);
+            setShow(true);
+        };
+
+        const handleClose = () => {
+            setShow(false);
+        };
+
+        const handleDeleteItem = () => {
+            setShow(false);
+            return setHozeList(hozeList.filter((item) => item.id !== deleteId));
+        };
+
+        const handleEdit = (id) => {
+            console.log(id);
+
+            const handleCancle = () => {
+                setIsShownVirayesh(" ");
+            };
+
+            setIsShownVirayesh(() => {
+                return (
+                    <div
+                        key={Math.random()}
+                        className="div-parent-add-edit w-100 d-flex align-items-center mt-4 gap-5"
+                    >
+                        <div className="w-18-5 div-parent-text-field">
+                            <div className="content">
+                                <TextField
+                                    id={1}
+                                    key={11}
+                                    label="نام"
+                                    type="text"
+                                    defaultValue={defaultValue}
+                                    onChange={onChange}
+                                    
+                                />
+                            </div>
+                        </div>
+
+                        <div className="w-18-5 div-parent-text-field">
+                            <div className="content">
+                                <TextField
+                                    id={2}
+                                    key={12}
+                                    label="مکان (طبقه)"
+                                    type="text"
+                                    defaultValue={place}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="w-18-5 div-parent-text-field">
+                            <div className="content">
+                                <TextField
+                                    id={3}
+                                    key={13}
+                                    label="ظرفیت (نفر)"
+                                    type="text"
+                                    defaultValue={zarfiat}
+                                />
+                            </div>
+                        </div>
+
+                        <div
+                            className="div-parent-buttons d-flex algin-items-center gap-4"
+                            style={{ marginTop: "2.8rem" }}
+                        >
+                            <Button style={{ backgroundColor: "#00B1D6" }}>
+                                ذخیره
+                            </Button>
+
+                            <Button
+                                style={{ backgroundColor: "#FF3464" }}
+                                onClick={handleCancle}
+                            >
+                                انصراف
+                            </Button>
+                        </div>
+                    </div>
+                );
+            });
+        };
+        return (
+            <div className="add-new-hoze" key={Math.random()} id={item?.id}>
+                <div className="d-flex algin-items-center mt-5 gap-5">
+                    <div className="div-item">
+                        {i + 1}-{item?.name} - {item?.place} - {item?.zarfiat}
+                    </div>
+
+                    <div className="d-flex algin-items-center gap-4 mt-1">
+                        <Button
+                            style={{ backgroundColor: "#00B1D6" }}
+                            onClick={handleEdit}
+                        >
+                            ویرایش
+                        </Button>
+
+                        <Button
+                            style={{ backgroundColor: "#FF3464" }}
+                            onClick={() => {
+                                handleClickItem(item.id);
+                            }}
+                        >
+                            حذف
+                        </Button>
+
+                        <ModalDelete
+                            show={show}
+                            handleClose={handleClose}
+                            modalText="  آیا میخواهید این حوزه را حذف کنید؟ "
+                            btnDeleteMtn=" حذف "
+                            btnLaghvMtn=" لغو "
+                            handleDeleteItem={handleDeleteItem}
+                        ></ModalDelete>
+                    </div>
+                </div>
+
+                <div>{isShownVirayesh}</div>
+            </div>
+        );
+    }
 
     return (
         <div style={style.divBody}>

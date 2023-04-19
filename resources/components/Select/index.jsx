@@ -7,6 +7,7 @@ export function RSSelect(props) {
         <Select
             {...props}
             key={props.id}
+            defaultValue={props.myValue}
             styles={{
                 control: (baseStyles, state) => ({
                     ...baseStyles,

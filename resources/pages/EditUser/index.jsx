@@ -5,9 +5,9 @@ import { Form } from "react-bootstrap";
 import Dropzone from "react-dropzone";
 import { Button } from "../../components/Button";
 import { DatePicker } from "zaman";
-import "./style.css";
+import axios from "axios";
 
-function NewUser() {
+function EditUser() {
     const style = {
         divBody: {
             backgroundColor: "#F4F6F9",
@@ -52,7 +52,11 @@ function NewUser() {
     const [bankAccountNumber, setBankAccountNumber] = useState();
     const [address, setAddress] = useState();
 
-    const inputToken = document.querySelector('input').value
+    // axios.post(`http://localhost:8000/editUser`, { data }).then((res) => {
+    //     console.log(res.data.status);
+    // });
+
+    const inputToken = document.querySelector("input").value;
 
     const handleSubmitForm = (e) => {
         e.preventDefault();
@@ -83,11 +87,14 @@ function NewUser() {
             formdata.append("address", address);
             formdata.append("file", image);
             formdata.append("_token", inputToken);
+            formdata.append("_method", "PUT");
             console.log(formdata.getAll("_token"));
 
-            axios.post(`http://localhost:8000/newUser`, { formdata }).then((res) => {
-                console.log(res.data.status);
-            });
+            axios
+                .post(`http://localhost:8000/newUser`, { formdata })
+                .then((res) => {
+                    console.log(res.data.status);
+                });
         };
         submitForm();
     };
@@ -185,13 +192,12 @@ function NewUser() {
                                 { value: "female", label: "زن" },
                                 { value: "male", label: "مرد" },
                                 { value: "other", label: "دیگر" },
-
                             ]}
                             onChange={(e) => {
                                 setGender(e.value);
                             }}
                             defaultValue="male"
-                            myValue={{label: "مرد", value: "male"}}
+                            myValue={{ label: "مرد", value: "male" }}
                             placeholder="جنسیت"
                         />
                     </div>
@@ -212,7 +218,7 @@ function NewUser() {
                             onChange={(e) => {
                                 setMaritalStatus(e.value);
                             }}
-                            myValue={{label: "مجرد", value: "0"}}
+                            myValue={{ label: "مجرد", value: "0" }}
                         />
                     </div>
                 </div>
@@ -231,7 +237,7 @@ function NewUser() {
                             onChange={(e) => {
                                 setJob(e.value);
                             }}
-                            myValue={{label: "دانشجو", value: "0"}}
+                            myValue={{ label: "دانشجو", value: "0" }}
                         />
                     </div>
                 </div>
@@ -252,7 +258,7 @@ function NewUser() {
                             onChange={(e) => {
                                 setJobPlace(e.value);
                             }}
-                            myValue={{label: "دانشگاه شیراز", value: "0"}}
+                            myValue={{ label: "دانشگاه شیراز", value: "0" }}
                         />
                     </div>
                 </div>
@@ -274,7 +280,10 @@ function NewUser() {
                             onChange={(e) => {
                                 setEducation(e.value);
                             }}
-                            myValue={{label: "کارشناسی ارشد", value: "کارشناسی ارشد"}}
+                            myValue={{
+                                label: "کارشناسی ارشد",
+                                value: "کارشناسی ارشد",
+                            }}
                         />
                     </div>
                 </div>
@@ -395,4 +404,4 @@ function NewUser() {
     );
 }
 
-export default NewUser;
+export default EditUser;

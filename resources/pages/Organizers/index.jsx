@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { RSSelect } from "../../components/Select";
 import { Button } from "../../components/Button";
-import { TableRow } from "../../components/TableRow";
+import dataTable from "./../../Data/dataTable";
+import { Input } from "../../components/Input";
 import "./style.css";
 
 function Organizers() {
@@ -32,6 +33,9 @@ function Organizers() {
     const [tatbigh, setTatbigh] = useState("امین حاجی زاده");
     const [sarparast, setSarparast] = useState("امین حاجی زاده");
 
+    const inputToken = document.querySelector ("input").value
+    console.log(inputToken);
+
     const handleSubmit = () => {
         const data = {
             modir,
@@ -46,8 +50,14 @@ function Organizers() {
             shomaresh,
             tatbigh,
             sarparast,
+            _token: inputToken,
+            // _method:"PUT",
         };
         console.log(data);
+
+        axios.post(`http://localhost:8000/organizers/`, { data }).then((res) => {
+            console.log(res.data.status);
+        });
     };
 
     return (
@@ -186,77 +196,120 @@ function Organizers() {
                         <th>سرپرست سالن</th>
                     </tr>
 
-                    <TableRow
-                        onChangeFrom={(e) => {
-                            setFromNumber(e.target.value);
-                        }}
-                        onChangeTo={(e) => {
-                            setToNumber(e.target.value);
-                        }}
-                        onChangeRabet={(e) => {
-                            setRabet(e.value);
-                        }}
-                        onChangeMoragheb={(e) => {
-                            setMoragheb(e.value);
-                        }}
-                        onChangeShomaresh={(e) => {
-                            setShomaresh(e.value);
-                        }}
-                        onChangeTatbigh={(e) => {
-                            setTatbigh(e.value);
-                        }}
-                        onChangeSarparast={(e) => {
-                            setSarparast(e.value);
-                        }}
-                    />
+                    {dataTable.map((item, i) => {
+                        return (
+                            <tr key={Math.random()}>
+                                <td className="radif">{item.id}</td>
+                                <td className="mahal-azmoon-1">{item.hozePlace1}</td>
+                                <td className="mahal-azmoon-2"> {item.hozePlace2}</td>
 
-                    <TableRow
-                        onChangeFrom={(e) => {
-                            setFromNumber(e.target.value);
-                        }}
-                        onChangeTo={(e) => {
-                            setToNumber(e.target.value);
-                        }}
-                        onChangeRabet={(e) => {
-                            setRabet(e.value);
-                        }}
-                        onChangeMoragheb={(e) => {
-                            setMoragheb(e.value);
-                        }}
-                        onChangeShomaresh={(e) => {
-                            setShomaresh(e.value);
-                        }}
-                        onChangeTatbigh={(e) => {
-                            setTatbigh(e.value);
-                        }}
-                        onChangeSarparast={(e) => {
-                            setSarparast(e.value);
-                        }}
-                    />
+                                <td className="parent-input-from-number">
+                                    <Input
+                                        type="number"
+                                        onChange={(e) => {
+                                            setFromNumber(e.target.value);
+                                        }}
+                                    />
+                                </td>
 
-                    <TableRow
-                        onChangeFrom={(e) => {
-                            setFromNumber(e.target.value);
-                        }}
-                        onChangeTo={(e) => {
-                            setToNumber(e.target.value);
-                        }}
-                        onChangeRabet={(e) => {
-                            setRabet(e.value);
-                        }}
-                        onChangeMoragheb={(e) => {
-                            setMoragheb(e.value);
-                        }}
-                        onChangeShomaresh={(e) => {
-                            setShomaresh(e.value);
-                        }}
-                        onChangeTatbigh={(e) => {
-                            setTatbigh(e.value);
-                        }}
-                        onChangeSarparast={(e) => {
-                            setSarparast(e.value);
-                        }}
-                    />
+                                <td className="parent-input-to-number">
+                                    <Input
+                                        type="number"
+                                        onChange={(e) => {
+                                            setToNumber(e.target.value);
+                                        }}
+                                    />
+                                </td>
+
+                                <td className="tedad">20</td>
+
+                                <td className="parent-select-rabet">
+                                    <RSSelect
+                                        options={[
+                                            {
+                                                value: "0",
+                                                label: "امین حاجی زاده",
+                                            },
+                                            { value: "1", label: "..." },
+                                        ]}
+                                        onChange={(e) => {
+                                            setRabet(e.value);
+                                        }}
+                                        defaultValue="امین حاجی زاده"
+                                        placeholder="امین حاجی زاده"
+                                    />
+                                </td>
+
+                                <td className="parent-select-moragheb">
+                                    <RSSelect
+                                        options={[
+                                            {
+                                                value: "0",
+                                                label: "امین حاجی زاده",
+                                            },
+                                            { value: "1", label: "..." },
+                                        ]}
+                                        onChange={(e) => {
+                                            setMoragheb(e.value);
+                                        }}
+                                        defaultValue="امین حاجی زاده"
+                                        placeholder="امین حاجی زاده"
+                                    />
+                                </td>
+
+                                <td className="parent-select-shomaresh">
+                                    <RSSelect
+                                        options={[
+                                            {
+                                                value: "0",
+                                                label: "امین حاجی زاده",
+                                            },
+                                            { value: "1", label: "..." },
+                                        ]}
+                                        onChange={(e) => {
+                                            setShomaresh(e.value);
+                                        }}
+                                        defaultValue="امین حاجی زاده"
+                                        placeholder="امین حاجی زاده"
+                                    />
+                                </td>
+
+                                <td className="parent-select-tatbigh">
+                                    <RSSelect
+                                        options={[
+                                            {
+                                                value: "0",
+                                                label: "امین حاجی زاده",
+                                            },
+                                            { value: "1", label: "..." },
+                                        ]}
+                                        onChange={(e) => {
+                                            setTatbigh(e.value);
+                                        }}
+                                        defaultValue="امین حاجی زاده"
+                                        placeholder="امین حاجی زاده"
+                                    />
+                                </td>
+
+                                <td className="parent-select-sarparast">
+                                    <RSSelect
+                                        options={[
+                                            {
+                                                value: "0",
+                                                label: "امین حاجی زاده",
+                                            },
+                                            { value: "1", label: "..." },
+                                        ]}
+                                        onChange={(e) => {
+                                            setSarparast(e.value);
+                                        }}
+                                        defaultValue="امین حاجی زاده"
+                                        placeholder="امین حاجی زاده"
+                                    />
+                                </td>
+                            </tr> 
+                        );
+                    })}
 
                     <tr>
                         <td></td>

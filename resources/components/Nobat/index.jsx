@@ -5,7 +5,6 @@ import { RSSelect } from "../Select";
 import { Button } from "../Button";
 import { useState } from "react";
 import { AddHoze } from "../addHoze";
-import { Children } from "react";
 
 export function Nobat() {
     const style = {
@@ -38,6 +37,8 @@ export function Nobat() {
     const [nobat, setNobat] = useState("صبح");
     const [show, setShow] = useState(false);
 
+    const inputToken = document.querySelector('input').value
+
     const handleSubmit = (e) => {
         createHoze();
         if (hozeNumber < 50) {
@@ -53,13 +54,19 @@ export function Nobat() {
             tarikh,
             nobat,
             hozeNumber,
+            _token: inputToken
         };
+
         console.log(data);
+
+        axios.post(`http://localhost:8000/newExam`, { data }).then((res) => {
+            console.log(res.data);
+        });
     };
 
     const createHoze = () => {
         for (let i = 0; i < hozeNumber; i++) {
-            hoze.push(<AddHoze key={Math.random()} />);
+            hoze.push(<AddHoze key={Math.random()} id={Math.random()} />);
         }
         console.log(hoze);
     };

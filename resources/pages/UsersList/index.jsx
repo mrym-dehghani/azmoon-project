@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import dataUser from "../../Data/dataUser";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ModalDelete from "../../components/ModalDelete";
@@ -144,13 +144,34 @@ function UsersList() {
                                     style={styles.inputStyle}
                                 />
                             </div>
-                            <button
+                            {/* <button
                                 onClick={navigateToNewUsers}
                                 style={styles.editBtn}
                             >
                                 {" "}
                                 ویرایش{" "}
-                            </button>
+                            </button> */}
+                            <Link
+                            to="/editUser?user_id={`${item.id}`}"
+                            target="_blank"
+                            className="border-0 fs-5"
+                            style={{
+                                backgroundColor: "#00B1D6",
+                                // marginTop: "",
+                                width: "14%",
+                                height: "3.5rem",
+                                display:"flex",
+                                alignItems:"center",
+                                justifyContent:"center",
+                                textDecoration:"none",
+                                color:"#fff",
+                                borderRadius:"5px",
+                            }}
+                            type="submit"
+                            // onClick={navigateToOrganizers}
+                        >
+                             ویرایش
+                        </Link>
                             <button
                                 style={styles.deleteBtn}
                                 onClick={() => {

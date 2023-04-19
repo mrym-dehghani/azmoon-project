@@ -3,7 +3,6 @@ import { TextField } from "../../components/TextField";
 import { Button } from "../../components/Button";
 import { useState } from "react";
 import { Nobat } from "../../components/Nobat";
-import { useEffect } from "react";
 
 function NewExam() {
     const style = {
@@ -20,30 +19,42 @@ function NewExam() {
         },
     };
 
-    const [id , setId] = useState(Math.random());
+    const [id, setId] = useState(Math.random());
     const [examNumber, setExamNumber] = useState();
-    const [examName,setExamName] = useState();
+    const [examName, setExamName] = useState();
     const [uiShow, setUiShow] = useState();
     const [shifts, setShifts] = useState([]);
+
+    const inputToken = document.querySelector('input').value
 
     const handleSubmit = (e) => {
         createShifts();
         if (examNumber < 50) {
             setUiShow(() => {
-               return <Nobat/>
-            })
-
+                return <Nobat />;
+            });
         } else {
             console.log("no");
         }
 
-        console.log(shifts);
+        const data = {
+            examName,
+            examNumber,
+            _token: inputToken
+        }
+
+        console.log(data);
+        
+        axios.post(`http://localhost:8000/newExam`, { data }).then((res) => {
+            console.log(res.data);
+        });
+
     };
 
     const createShifts = () => {
         if (examName) {
             for (let i = 0; i < examNumber; i++) {
-                shifts.push(<Nobat key={Math.random()} id={Math.random()}/>);
+                shifts.push(<Nobat key={Math.random()} id={Math.random()} />);
             }
             console.log(shifts);
         }
@@ -103,9 +114,8 @@ function NewExam() {
             </div>
 
             {shifts.map((i) => {
-                return <Nobat key={Math.random()}/>;
+                return <Nobat key={Math.random()} />;
             })}
-
         </div>
     );
 }

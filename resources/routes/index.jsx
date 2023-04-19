@@ -9,6 +9,7 @@ import NewExam from '../pages/NewExam';
 import ListExams from '../pages/ListExams';
 import SignUp from '../pages/SignUp';
 import LogIn from '../pages/LogIn';
+import EditUser from './../pages/EditUser/index';
 
 export const routes = {
     NewUser: {
@@ -60,5 +61,10 @@ export const routes = {
         id:10,
         path: '/logIn',
         element: <LogIn/>,
+    },
+    EditUser: {
+        id:11,
+        path: '/editUser',
+        element: <EditUser/>,
     },
 };
