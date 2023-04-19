@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
+            $table->string("name");
+            $table->integer("num_of_shifts");
+            $table->boolean("has_finished")->default(false);
             $table->timestamps();
         });
     }
