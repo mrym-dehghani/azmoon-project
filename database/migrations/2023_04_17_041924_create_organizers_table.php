@@ -13,6 +13,19 @@ return new class extends Migration
     {
         Schema::create('organizers', function (Blueprint $table) {
             $table->id();
+            $table->string("first_name")->nullable();
+            $table->string("last_name")->nullable();
+            $table->string("international_code")->nullable();
+            $table->string("birth_date")->nullable();
+            $table->enum("gender",["male","female"])->nullable();
+            $table->enum("marriage",["yes","no","unknown"])->nullable();
+            $table->string("job")->nullable();
+            $table->string("job_place")->nullable();
+            $table->enum("education",["zir_diplom","diplom","kardani","karshenasi","arshad","dr"])->nullable();
+            $table->string("phone_number")->nullable();
+            $table->string("account_number")->nullable();
+            $table->text("address")->nullable();
+            $table->string("image_url")->nullable();
             $table->timestamps();
         });
     }

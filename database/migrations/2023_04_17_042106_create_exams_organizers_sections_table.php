@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('exams_organizers_sections', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("organizers_id");
+            $table->unsignedBigInteger("exam_shift_id");
+            $table->unsignedBigInteger("role_id");
+            $table->unsignedBigInteger("sub_area_id");
+            $table->unsignedBigInteger("sub_area_section_id");
             $table->timestamps();
         });
     }

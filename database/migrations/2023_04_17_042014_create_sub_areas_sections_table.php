@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('sub_areas_sections', function (Blueprint $table) {
             $table->id();
+            $table->string("name");
+            $table->string("place")->nullable();
+            $table->integer("capacity")->nullable();
+            $table->unsignedBigInteger("sub_area_id");
             $table->timestamps();
+
+            $table->foreign("sub_area_id")->references("id")->on("sub_areas")
+                ->onDelete("cascade");
         });
     }
 
