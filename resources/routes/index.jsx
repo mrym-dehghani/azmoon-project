@@ -11,6 +11,7 @@ import SignUp from '../pages/SignUp';
 import LogIn from '../pages/LogIn';
 import EditUser from './../pages/EditUser/index';
 import EditHozeList from './../pages/EditHozeList/index';
+import EditListExam from './../pages/EditListExams/index';
 
 export const routes = {
     NewUser: {
@@ -72,5 +73,10 @@ export const routes = {
         id:12,
         path: '/editHozeList',
         element: <EditHozeList/>,
+    },
+    EditListExam: {
+        id:13,
+        path: '/editListExam',
+        element: <EditListExam/>,
     },
 };

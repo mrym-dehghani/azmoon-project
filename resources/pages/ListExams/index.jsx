@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./styles.css";
 import listExamsData from "../../Data/listExamsData";
 import ModalDelete from "../../components/ModalDelete";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./styles.css";
+
 
 function ListExams() {
     const styles = {
@@ -136,7 +137,7 @@ function ListExams() {
                                 />
                             </div>
                             <Link
-                                to="/editHozeList?Hoze_id={`${item.id}`}"
+                                to="/editListExam?exam_id={`${item.id}`}"
                                 target="_blank"
                                 className="border-0 fs-5"
                                 style={{
@@ -151,7 +152,6 @@ function ListExams() {
                                     borderRadius: "5px",
                                 }}
                                 type="submit"
-                                // onClick={navigateToOrganizers}
                             >
                                 ویرایش
                             </Link>
