@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextField } from "../../components/TextField";
 import { RSSelect } from "../../components/Select";
 import { Form } from "react-bootstrap";
 import Dropzone from "react-dropzone";
 import { Button } from "../../components/Button";
 import { DatePicker } from "zaman";
+import { Loading } from "../../components/Loading";
 import axios from "axios";
+import "./style.css";
 
 function EditUser() {
     const style = {
@@ -51,11 +53,8 @@ function EditUser() {
     const [phoneNumber, setPhoneNumber] = useState();
     const [bankAccountNumber, setBankAccountNumber] = useState();
     const [address, setAddress] = useState();
-
-    // axios.post(`http://localhost:8000/editUser`, { data }).then((res) => {
-    //     console.log(res.data.status);
-    // });
-
+    const [data, setData] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
     const inputToken = document.querySelector("input").value;
 
     const handleSubmitForm = (e) => {
@@ -91,7 +90,7 @@ function EditUser() {
             console.log(formdata.getAll("_token"));
 
             axios
-                .post(`http://localhost:8000/newUser`, { formdata })
+                .post(`http://localhost:8000/editUser`, { formdata })
                 .then((res) => {
                     console.log(res.data.status);
                 });
@@ -120,8 +119,29 @@ function EditUser() {
         </svg>`;
     };
 
-    return (
-        <Form style={style.divBody}>
+    useEffect(() => {
+        async function fetchData() {
+            setIsLoading(true);
+            try {
+                const response = await fetch(
+                    "https://jsonplaceholder.typicode.com/users"
+                );
+                const json = await response.json();
+                setData(json);
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setIsLoading(false);
+            }
+        }
+        fetchData();
+    }, []);
+    if (isLoading) {
+        return <Loading/>
+    }
+    if (data) {
+        return (
+            <Form style={style.divBody}>
             <div>
                 <h1 className="fs-4">کاربر جدید</h1>
                 <p style={style.p} className="fs-6">
@@ -401,7 +421,9 @@ function EditUser() {
                 <div>{isShowModal}</div>
             </div>
         </Form>
-    );
+        );
+    }
+    // return <div style={{ color: "black" }}>No data</div>;
 }
 
 export default EditUser;

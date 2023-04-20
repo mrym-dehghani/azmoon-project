@@ -33,7 +33,7 @@ function Organizers() {
     const [tatbigh, setTatbigh] = useState("امین حاجی زاده");
     const [sarparast, setSarparast] = useState("امین حاجی زاده");
 
-    const inputToken = document.querySelector ("input").value
+    const inputToken = document.querySelector("input").value;
     console.log(inputToken);
 
     const handleSubmit = () => {
@@ -55,9 +55,11 @@ function Organizers() {
         };
         console.log(data);
 
-        axios.post(`http://localhost:8000/organizers/`, { data }).then((res) => {
-            console.log(res.data.status);
-        });
+        axios
+            .post(`http://localhost:8000/organizers/`, { data })
+            .then((res) => {
+                console.log(res.data.status);
+            });
     };
 
     return (
@@ -200,8 +202,13 @@ function Organizers() {
                         return (
                             <tr key={Math.random()}>
                                 <td className="radif">{item.id}</td>
-                                <td className="mahal-azmoon-1">{item.hozePlace1}</td>
-                                <td className="mahal-azmoon-2"> {item.hozePlace2}</td>
+                                <td className="mahal-azmoon-1">
+                                    {item.hozePlace1}
+                                </td>
+                                <td className="mahal-azmoon-2">
+                                    {" "}
+                                    {item.hozePlace2}
+                                </td>
 
                                 <td className="parent-input-from-number">
                                     <Input
@@ -307,7 +314,7 @@ function Organizers() {
                                         placeholder="امین حاجی زاده"
                                     />
                                 </td>
-                            </tr> 
+                            </tr>
                         );
                     })}
 

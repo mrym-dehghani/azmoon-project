@@ -8,14 +8,14 @@ function NewExam() {
     const style = {
         divBody: {
             backgroundColor: "#F4F6F9",
-            marginTop: "1.5rem",
+            marginTop: "3rem",
             padding: "1.5rem 1.5rem",
             borderRadius: "1.6rem",
             minHeight: "100vh",
         },
         p: {
             borderBottom: "1.5px solid lightgray",
-            paddingBottom: "1rem",
+            paddingBottom: "2rem",
         },
     };
 
@@ -63,7 +63,7 @@ function NewExam() {
     return (
         <div style={style.divBody}>
             <div>
-                <h1 className="fs-4">آزمون جدید</h1>
+                <h1 className="fs-4 pb-2">آزمون جدید</h1>
                 <p style={style.p} className="fs-6">
                     مدیریت / آزمون ها / آزمون جدید
                 </p>

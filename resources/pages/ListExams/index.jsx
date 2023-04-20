@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
 import listExamsData from "../../Data/listExamsData";
@@ -135,13 +135,26 @@ function ListExams() {
                                     style={styles.inputStyle}
                                 />
                             </div>
-                            <button
-                                onClick={navigateToNewExam}
-                                style={styles.editBtn}
+                            <Link
+                                to="/editHozeList?Hoze_id={`${item.id}`}"
+                                target="_blank"
+                                className="border-0 fs-5"
+                                style={{
+                                    backgroundColor: "#00B1D6",
+                                    width: "14%",
+                                    height: "3.5rem",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    textDecoration: "none",
+                                    color: "#fff",
+                                    borderRadius: "5px",
+                                }}
+                                type="submit"
+                                // onClick={navigateToOrganizers}
                             >
-                                {" "}
-                                ویرایش{" "}
-                            </button>
+                                ویرایش
+                            </Link>
                             <button
                                 style={styles.deleteBtn}
                                 onClick={() => {

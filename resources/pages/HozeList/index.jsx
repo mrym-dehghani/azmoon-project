@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import dataHoze from "../../Data/dataHoze";
+import ModalDelete from "../../components/ModalDelete";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
-import ModalDelete from "../../components/ModalDelete";
+
 
 function HozeList() {
     const styles = {
@@ -65,11 +66,6 @@ function HozeList() {
     const navigateToHozeFareiJadid = (id) => {
         navigate("/newHoze");
         console.log(id);
-        // axios.post(`http://localhost:8000/newHoze`, { id })
-        // .then(res => {
-        //   console.log(res);
-        //   console.log(res.id);
-        // })
     };
 
     const [data, setData] = useState(dataHoze);
@@ -149,18 +145,25 @@ function HozeList() {
                                     style={styles.inputStyle}
                                 />
                             </div>
-                            <button
-                                onClick={
-                                    // navigateToHozeFareiJadid
-                                    () => {
-                                        navigateToHozeFareiJadid(id);
-                                    }
-                                }
-                                style={styles.editBtn}
+                            <Link
+                                to="/editHozeList?Hoze_id={`${item.id}`}"
+                                target="_blank"
+                                className="border-0 fs-5"
+                                style={{
+                                    backgroundColor: "#00B1D6",
+                                    width: "14%",
+                                    height: "3.5rem",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    textDecoration: "none",
+                                    color: "#fff",
+                                    borderRadius: "5px",
+                                }}
+                                type="submit"
                             >
-                                {" "}
-                                ویرایش{" "}
-                            </button>
+                                ویرایش
+                            </Link>
                             <button
                                 style={styles.deleteBtn}
                                 onClick={() => {

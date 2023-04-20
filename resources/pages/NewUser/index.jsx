@@ -52,7 +52,7 @@ function NewUser() {
     const [bankAccountNumber, setBankAccountNumber] = useState();
     const [address, setAddress] = useState();
 
-    const inputToken = document.querySelector('input').value
+    const inputToken = document.querySelector("input").value;
 
     const handleSubmitForm = (e) => {
         e.preventDefault();
@@ -85,9 +85,11 @@ function NewUser() {
             formdata.append("_token", inputToken);
             console.log(formdata.getAll("_token"));
 
-            axios.post(`http://localhost:8000/newUser`, { formdata }).then((res) => {
-                console.log(res.data.status);
-            });
+            axios
+                .post(`http://localhost:8000/newUser`, { formdata })
+                .then((res) => {
+                    console.log(res.data.status);
+                });
         };
         submitForm();
     };
@@ -168,6 +170,7 @@ function NewUser() {
                             تاریخ تولد
                         </label>
                         <DatePicker
+                            className="input-datePiker"
                             onChange={(e) => {
                                 setBirthday(e.value.toLocaleDateString());
                             }}
@@ -185,13 +188,12 @@ function NewUser() {
                                 { value: "female", label: "زن" },
                                 { value: "male", label: "مرد" },
                                 { value: "other", label: "دیگر" },
-
                             ]}
                             onChange={(e) => {
                                 setGender(e.value);
                             }}
                             defaultValue="male"
-                            myValue={{label: "مرد", value: "male"}}
+                            myValue={{ label: "مرد", value: "male" }}
                             placeholder="جنسیت"
                         />
                     </div>
@@ -212,7 +214,7 @@ function NewUser() {
                             onChange={(e) => {
                                 setMaritalStatus(e.value);
                             }}
-                            myValue={{label: "مجرد", value: "0"}}
+                            myValue={{ label: "مجرد", value: "0" }}
                         />
                     </div>
                 </div>
@@ -231,7 +233,7 @@ function NewUser() {
                             onChange={(e) => {
                                 setJob(e.value);
                             }}
-                            myValue={{label: "دانشجو", value: "0"}}
+                            myValue={{ label: "دانشجو", value: "0" }}
                         />
                     </div>
                 </div>
@@ -252,7 +254,7 @@ function NewUser() {
                             onChange={(e) => {
                                 setJobPlace(e.value);
                             }}
-                            myValue={{label: "دانشگاه شیراز", value: "0"}}
+                            myValue={{ label: "دانشگاه شیراز", value: "0" }}
                         />
                     </div>
                 </div>
@@ -274,7 +276,10 @@ function NewUser() {
                             onChange={(e) => {
                                 setEducation(e.value);
                             }}
-                            myValue={{label: "کارشناسی ارشد", value: "کارشناسی ارشد"}}
+                            myValue={{
+                                label: "کارشناسی ارشد",
+                                value: "کارشناسی ارشد",
+                            }}
                         />
                     </div>
                 </div>

@@ -4,7 +4,8 @@ import { DatePicker } from "zaman";
 import { RSSelect } from "../Select";
 import { Button } from "../Button";
 import { useState } from "react";
-import { AddHoze } from "../addHoze";
+import { AddHoze } from "../AddHoze";
+
 
 export function Nobat() {
     const style = {
@@ -76,8 +77,8 @@ export function Nobat() {
     };
 
     return (
-        <div className="add-new-exam">
-            <div className="d-flex align-items-center gap-2 mt-4 new-nobat">
+        <div className="add-new-exam pt-5">
+            <div className="d-flex align-items-center gap-2 mt-3 new-nobat">
                 <p style={style.p}>نوبت</p>
                 <button style={style.btn} onClick={toggleNobat}>
                     -
@@ -85,7 +86,7 @@ export function Nobat() {
             </div>
 
             <div className="parent-nobat">
-                <div className=" w-100 d-flex align-items-center mt-2 gap-5">
+                <div className=" w-100 d-flex align-items-center mt-3 gap-5">
                     <div className="w-20">
                         <div className="content">
                             <TextField
@@ -125,8 +126,7 @@ export function Nobat() {
                                 onChange={(e) => {
                                     setNobat(e.value);
                                 }}
-                                defaultValue="صبح"
-                                placeholder="صبح"
+                                myValue={{ value: "0", label: "صبح" }}  
                             />
                         </div>
                     </div>

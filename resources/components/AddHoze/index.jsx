@@ -37,8 +37,7 @@ export function AddHoze({id}) {
                                 onChange={(e) => {
                                     setHoze(e.value);
                                 }}
-                                defaultValue="پردیس علوم"
-                                placeholder="پردیس علوم"
+                                myValue={{ value: "0", label: "پردیس علوم" }}
                             />
                         </div>
                     </div>
