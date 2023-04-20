@@ -146,7 +146,7 @@ function HozeList() {
                                 />
                             </div>
                             <Link
-                                to="/editHozeList?Hoze_id={`${item.id}`}"
+                                to={`/editHozeList?Hoze_id=${item.id}`}
                                 target="_blank"
                                 className="border-0 fs-5"
                                 style={{

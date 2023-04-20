@@ -137,7 +137,7 @@ function ListExams() {
                                 />
                             </div>
                             <Link
-                                to="/editListExam?exam_id={`${item.id}`}"
+                                to={`/editListExam?exam_id=${item.id}`}
                                 target="_blank"
                                 className="border-0 fs-5"
                                 style={{
