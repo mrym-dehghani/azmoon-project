@@ -107,7 +107,6 @@ function NewHoze() {
                                     type="text"
                                     defaultValue={defaultValue}
                                     onChange={onChange}
-                                    
                                 />
                             </div>
                         </div>
@@ -140,7 +139,10 @@ function NewHoze() {
                             className="div-parent-buttons d-flex algin-items-center gap-4"
                             style={{ marginTop: "2.8rem" }}
                         >
-                            <Button style={{ backgroundColor: "#00B1D6" }}>
+                            <Button 
+                                style={{ backgroundColor: "#00B1D6" }}
+                                // onClick={handleSave}
+                            >
                                 ذخیره
                             </Button>
 
@@ -165,7 +167,7 @@ function NewHoze() {
                     <div className="d-flex algin-items-center gap-4 mt-1">
                         <Button
                             style={{ backgroundColor: "#00B1D6" }}
-                            onClick={handleEdit}
+                            onClick={()=>{handleEdit(item.id)}}
                         >
                             ویرایش
                         </Button>

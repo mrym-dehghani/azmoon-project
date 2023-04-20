@@ -151,7 +151,6 @@ function UsersList() {
                                 className="border-0 fs-5"
                                 style={{
                                     backgroundColor: "#00B1D6",
-                                    // marginTop: "",
                                     width: "14%",
                                     height: "3.5rem",
                                     display: "flex",
@@ -162,7 +161,6 @@ function UsersList() {
                                     borderRadius: "5px",
                                 }}
                                 type="submit"
-                                // onClick={navigateToOrganizers}
                             >
                                 ویرایش
                             </Link>

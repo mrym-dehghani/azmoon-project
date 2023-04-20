@@ -4,7 +4,7 @@ import { Button } from "../Button";
 import { useNavigate, Link } from 'react-router-dom';
 import { useState } from "react";
 
-export function AddHoze({id}) {
+export function AddHoze({id ,examId , areaId , sectionId}) {
 
     const [hoze , setHoze]=useState("پردیس علوم")
 
@@ -44,7 +44,7 @@ export function AddHoze({id}) {
 
                     <div className="d-flex algin-items-center gap-5 flex-grow-1 mt-3">
                         <Link
-                            to="/organizers?exam_id=5&area_id=10"
+                            to={`/organizers?exam_id=${examId}&area_id=${areaId}&section_id=${sectionId}`}
                             target="_blank"
                             className="border-0 fs-5"
                             style={{

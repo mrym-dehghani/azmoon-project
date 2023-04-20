@@ -100,8 +100,7 @@ function Organizers() {
                             onChange={(e) => {
                                 setModir(e.value);
                             }}
-                            defaultValue="امین حاجی زاده"
-                            placeholder="امین حاجی زاده"
+                            myValue= {{ value: "0", label: "امین حاجی زاده" }}
                         />
                     </div>
                 </div>
@@ -119,8 +118,7 @@ function Organizers() {
                             onChange={(e) => {
                                 setNamayande(e.value);
                             }}
-                            defaultValue="دکتر مسلم باقری"
-                            placeholder="دکتر مسلم باقری"
+                            myValue={{ value: "0", label: "دکتر مسلم باقری" }}
                         />
                     </div>
                 </div>
@@ -138,8 +136,7 @@ function Organizers() {
                             onChange={(e) => {
                                 setMoaven(e.value);
                             }}
-                            defaultValue="دکتر مسلم باقری"
-                            placeholder="دکتر مسلم باقری"
+                            myValue={{ value: "0", label: "دکتر مسلم باقری" }}
                         />
                     </div>
                 </div>
@@ -157,8 +154,7 @@ function Organizers() {
                             onChange={(e) => {
                                 setMakhzan(e.value);
                             }}
-                            defaultValue="دکتر مسلم باقری"
-                            placeholder="دکتر مسلم باقری"
+                            myValue={{ value: "0", label: "دکتر مسلم باقری" }}
                         />
                     </div>
                 </div>
@@ -176,8 +172,7 @@ function Organizers() {
                             onChange={(e) => {
                                 setGuyande(e.value);
                             }}
-                            defaultValue="دکتر مسلم باقری"
-                            placeholder="دکتر مسلم باقری"
+                            myValue= {{ value: "0", label: "دکتر مسلم باقری" }}
                         />
                     </div>
                 </div>
@@ -242,8 +237,7 @@ function Organizers() {
                                         onChange={(e) => {
                                             setRabet(e.value);
                                         }}
-                                        defaultValue="امین حاجی زاده"
-                                        placeholder="امین حاجی زاده"
+                                        myValue={{ value: "0",label: "امین حاجی زاده"}}
                                     />
                                 </td>
 
@@ -259,8 +253,7 @@ function Organizers() {
                                         onChange={(e) => {
                                             setMoragheb(e.value);
                                         }}
-                                        defaultValue="امین حاجی زاده"
-                                        placeholder="امین حاجی زاده"
+                                        myValue={{ value: "0",label: "امین حاجی زاده"}}
                                     />
                                 </td>
 
@@ -276,8 +269,7 @@ function Organizers() {
                                         onChange={(e) => {
                                             setShomaresh(e.value);
                                         }}
-                                        defaultValue="امین حاجی زاده"
-                                        placeholder="امین حاجی زاده"
+                                        myValue={{ value: "0",label: "امین حاجی زاده"}}
                                     />
                                 </td>
 
@@ -293,25 +285,20 @@ function Organizers() {
                                         onChange={(e) => {
                                             setTatbigh(e.value);
                                         }}
-                                        defaultValue="امین حاجی زاده"
-                                        placeholder="امین حاجی زاده"
+                                        myValue={{ value: "0",label: "امین حاجی زاده"}}
                                     />
                                 </td>
 
                                 <td className="parent-select-sarparast">
                                     <RSSelect
                                         options={[
-                                            {
-                                                value: "0",
-                                                label: "امین حاجی زاده",
-                                            },
+                                            { value: "0",label: "امین حاجی زاده"},
                                             { value: "1", label: "..." },
                                         ]}
                                         onChange={(e) => {
                                             setSarparast(e.value);
                                         }}
-                                        defaultValue="امین حاجی زاده"
-                                        placeholder="امین حاجی زاده"
+                                       myValue={{ value: "0",label: "امین حاجی زاده"}}
                                     />
                                 </td>
                             </tr>

@@ -44,6 +44,7 @@ function EditListExam() {
             examName,
             examNumber,
             _token: inputToken,
+            _method: "PUT"
         };
 
         console.log(data);

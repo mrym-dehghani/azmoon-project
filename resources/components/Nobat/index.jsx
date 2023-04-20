@@ -67,7 +67,7 @@ export function Nobat() {
 
     const createHoze = () => {
         for (let i = 0; i < hozeNumber; i++) {
-            hoze.push(<AddHoze key={Math.random()} id={Math.random()} />);
+            hoze.push(<AddHoze areaId={1} examId={2} sectionId={3} key={Math.random()} id={Math.random()} />);
         }
         console.log(hoze);
     };

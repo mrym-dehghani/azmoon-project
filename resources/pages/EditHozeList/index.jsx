@@ -54,6 +54,7 @@ function EditHozeList() {
                 hozeName: NameHoze,
                 mainHoze: mainHoze,
                 _token: inputToken,
+                _method: "PUT"
             },
         ]);
         setTodo({
