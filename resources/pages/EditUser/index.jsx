@@ -72,25 +72,27 @@ function EditUser() {
             const image = await blobToBase64(file);
 
             const formdata = new FormData();
-            formdata.append("firstName", firstName);
-            formdata.append("lastName", lastName);
-            formdata.append("nationalCode", nationalCode);
-            formdata.append("birthday", birthday);
+            formdata.append("first-name", firstName);
+            formdata.append("last_name", lastName);
+            formdata.append("international_code", nationalCode);
+            formdata.append("birth_day", birthday);
             formdata.append("gender", gender);
-            formdata.append("maritalStatus", maritalStatus);
+            formdata.append("marriage", maritalStatus);
             formdata.append("job", job);
-            formdata.append("jobPlace", jobPlace);
+            formdata.append("job_place", jobPlace);
             formdata.append("education", education);
-            formdata.append("phoneNumber", phoneNumber);
-            formdata.append("bankAccountNumber", bankAccountNumber);
+            formdata.append("phone_number", phoneNumber);
+            formdata.append("account_number", bankAccountNumber);
             formdata.append("address", address);
-            formdata.append("file", image);
-            formdata.append("_token", inputToken);
+            formdata.append("image", image);
             formdata.append("_method", "PUT");
+            formdata.append("_token", inputToken);
             console.log(formdata.getAll("_token"));
 
+            const url= "http://localhost:8000"
+
             axios
-                .post(`http://localhost:8000/editUser`, { formdata })
+                .post(`${url}/newUser`, { formdata })
                 .then((res) => {
                     console.log(res.data.status);
                 });
@@ -123,13 +125,13 @@ function EditUser() {
         async function fetchData() {
             setIsLoading(true);
             try {
-                const response = await fetch(
+                const response = await axios.get(
                     "https://jsonplaceholder.typicode.com/users"
                 );
-                const json = await response.json();
-                setData(json);
+                setData(response);
             } catch (error) {
                 console.error(error);
+                setIsLoading(false);
             } finally {
                 setIsLoading(false);
             }

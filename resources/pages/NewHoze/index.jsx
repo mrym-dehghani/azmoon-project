@@ -22,7 +22,7 @@ function NewHoze() {
     };
 
     const [NameHoze, setNameHoze] = useState();
-    const [mainHoze, setMainHoze] = useState("دانشگاه شیراز");
+    const [mainHoze, setMainHoze] = useState(1);
     const [hozeList, setHozeList] = useState([]);
     const [isShownVirayesh, setIsShownVirayesh] = useState();
     const [deleteId, setDeleteId] = useState("");
@@ -34,7 +34,7 @@ function NewHoze() {
         key: Math.random(),
         name: "",
         place: "",
-        zarfiat: "",
+        capacity: "",
     });
 
     const handleAdd = (e) => {
@@ -43,13 +43,6 @@ function NewHoze() {
             ...hozeList,
             {
                 ...todo,
-                createAt: new Date().toLocaleDateString(),
-                id: Math.random(),
-                disabled: true,
-                checked: false,
-                key: Math.random(),
-                hozeName: NameHoze,
-                mainHoze: mainHoze,
                 _token: inputToken,
             },
         ]);
@@ -57,11 +50,18 @@ function NewHoze() {
             key: Math.random(),
             name: "",
             place: "",
-            zarfiat: "",
+            capacity: "",
         });
 
+        const data = {
+            name: NameHoze,
+            main_area_id: mainHoze,
+            section: hozeList,
+        }
+        console.log(data);
+
         axios
-            .post(`http://localhost:8000/newHoze`, { hozeList })
+            .post(`http://localhost:8000/newHoze`, { data })
             .then((res) => {
                 console.log(res.data);
             });
@@ -69,7 +69,7 @@ function NewHoze() {
 
     console.log(hozeList);
 
-    function AddNewHoze({ item, i, defaultValue, place, zarfiat, onChange }) {
+    function AddNewHoze({ item, i, defaultValue, place, capacity, onChange }) {
       
         const handleClickItem = (id) => {
             setDeleteId(id);
@@ -130,7 +130,7 @@ function NewHoze() {
                                     key={13}
                                     label="ظرفیت (نفر)"
                                     type="text"
-                                    defaultValue={zarfiat}
+                                    defaultValue={capacity}
                                 />
                             </div>
                         </div>
@@ -161,7 +161,7 @@ function NewHoze() {
             <div className="add-new-hoze" key={Math.random()} id={item?.id}>
                 <div className="d-flex algin-items-center mt-5 gap-5">
                     <div className="div-item">
-                        {i + 1}-{item?.name} - {item?.place} - {item?.zarfiat}
+                        {i + 1}-{item?.name} - {item?.place} - {item?.capacity}
                     </div>
 
                     <div className="d-flex algin-items-center gap-4 mt-1">
@@ -226,13 +226,13 @@ function NewHoze() {
                         
                         <RSSelect
                             options={[
-                                { value: "0", label: "دانشگاه شیراز" },
-                                { value: "1", label: "..." },
+                                { value: "1", label: "دانشگاه شیراز" },
+                                { value: "2", label: "..." },
                             ]}
                             onChange={(e) => {
                                 setMainHoze(e.value);
                             }}
-                            myValue= {{value: "0", label: "دانشگاه شیراز"}}
+                            myValue= {{value: "1", label: "دانشگاه شیراز"}}
 
                         />
                     </div>
@@ -278,14 +278,14 @@ function NewHoze() {
                     <div className="w-18 div-parent-text-field">
                         <div className="content">
                             <TextField
-                                id="zarfiat"
+                                id="capacity"
                                 label="ظرفیت (نفر)"
                                 type="text"
-                                value={todo.zarfiat}
+                                value={todo.capacity}
                                 onChange={(e) =>
                                     setTodo({
                                         ...todo,
-                                        zarfiat: e.target.value,
+                                        capacity: e.target.value,
                                     })
                                 }
                             />
@@ -314,7 +314,7 @@ function NewHoze() {
                                     i={i}
                                     defaultValue={item.name}
                                     place={item.place}
-                                    zarfiat={item.zarfiat}
+                                    capacity={item.capacity}
                                     onChange={(e) => {
                                         item.name = e.target.value;
                                     }}

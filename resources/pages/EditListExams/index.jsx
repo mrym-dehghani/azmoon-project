@@ -4,6 +4,7 @@ import { Button } from "../../components/Button";
 import { useState } from "react";
 import { Nobat } from "../../components/Nobat";
 import { Loading } from "../../components/Loading";
+import axios from "axios";
 
 function EditListExam() {
     const style = {
@@ -41,15 +42,17 @@ function EditListExam() {
         }
 
         const data = {
-            examName,
-            examNumber,
+            name:examName,
+            num_of_shifts:examNumber,
             _token: inputToken,
             _method: "PUT"
-        };
+        }
 
         console.log(data);
 
-        axios.post(`http://localhost:8000/newExam`, { data }).then((res) => {
+        const url= "http://localhost:8000"
+
+        axios.post(`${url}/newExam`, { data }).then((res) => {
             console.log(res.data);
         });
     };
@@ -67,13 +70,13 @@ function EditListExam() {
         async function fetchData() {
             setIsLoading(true);
             try {
-                const response = await fetch(
+                const response = await axios.get(
                     "https://jsonplaceholder.typicode.com/users"
                 );
-                const json = await response.json();
-                setData(json);
+                setData(response);
             } catch (error) {
                 console.error(error);
+                setIsLoading(false);
             } finally {
                 setIsLoading(false);
             }

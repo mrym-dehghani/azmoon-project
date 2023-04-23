@@ -32,10 +32,10 @@ export function Nobat() {
     const [uiShow, setUiShow] = useState();
     const [hozeNumber, setHozeNumber] = useState();
     const [hoze, setHoze] = useState([]);
-
+    // const [examId, setExamId] = useState();
     const [nobatName, setNobatName] = useState();
     const [tarikh, setTarikh] = useState();
-    const [nobat, setNobat] = useState("صبح");
+    const [nobat, setNobat] = useState("morning");
     const [show, setShow] = useState(false);
 
     const inputToken = document.querySelector('input').value
@@ -51,10 +51,11 @@ export function Nobat() {
         }
 
         const data = {
-            nobatName,
-            tarikh,
-            nobat,
-            hozeNumber,
+            name:nobatName,
+            hold_date:tarikh,
+            turn:nobat,
+            num_of_areas:hozeNumber,
+            exam_id: " ",
             _token: inputToken
         };
 
@@ -120,13 +121,13 @@ export function Nobat() {
                             </label>
                             <RSSelect
                                 options={[
-                                    { value: "0", label: "صبح" },
-                                    { value: "1", label: "عصر" },
+                                    { value: "morning", label: "صبح" },
+                                    { value: "evening", label: "عصر" },
                                 ]}
                                 onChange={(e) => {
                                     setNobat(e.value);
                                 }}
-                                myValue={{ value: "0", label: "صبح" }}  
+                                myValue={{ value: "morning", label: "صبح" }}  
                             />
                         </div>
                     </div>
