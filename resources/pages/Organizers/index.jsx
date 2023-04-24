@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RSSelect } from "../../components/Select";
 import { Button } from "../../components/Button";
 import dataTable from "./../../Data/dataTable";
@@ -62,6 +62,32 @@ function Organizers() {
             });
     };
 
+    useEffect(() => {
+        const url = new URL(window.location.href);
+        const params = new URLSearchParams(url.search);
+        const areaId = params.get("area_id");
+        const examId = params.get("exam_id");
+        const sectionId = params.get("section_id");
+        console.log(examId);
+
+        const organizerInfo = {
+            exam_shift_id: sectionId,
+            sub_area_id: areaId,
+            organizers_main: "",
+            organizers_shift: "",
+        };
+
+        axios
+            .post(`http://localhost:8000/organizers/`, { organizerInfo })
+            .then((res) => {
+                console.log(res.data.status);
+            });
+    }, []);
+
+    axios.post(`http://localhost:8000/organizers/rols`).then((res) => {
+        console.log(res.data.status);
+    });
+
     return (
         <div style={style.divBody}>
             <div>
@@ -100,7 +126,7 @@ function Organizers() {
                             onChange={(e) => {
                                 setModir(e.value);
                             }}
-                            myValue= {{ value: "0", label: "امین حاجی زاده" }}
+                            myValue={{ value: "0", label: "امین حاجی زاده" }}
                         />
                     </div>
                 </div>
@@ -172,7 +198,7 @@ function Organizers() {
                             onChange={(e) => {
                                 setGuyande(e.value);
                             }}
-                            myValue= {{ value: "0", label: "دکتر مسلم باقری" }}
+                            myValue={{ value: "0", label: "دکتر مسلم باقری" }}
                         />
                     </div>
                 </div>
@@ -237,7 +263,10 @@ function Organizers() {
                                         onChange={(e) => {
                                             setRabet(e.value);
                                         }}
-                                        myValue={{ value: "0",label: "امین حاجی زاده"}}
+                                        myValue={{
+                                            value: "0",
+                                            label: "امین حاجی زاده",
+                                        }}
                                     />
                                 </td>
 
@@ -253,7 +282,10 @@ function Organizers() {
                                         onChange={(e) => {
                                             setMoragheb(e.value);
                                         }}
-                                        myValue={{ value: "0",label: "امین حاجی زاده"}}
+                                        myValue={{
+                                            value: "0",
+                                            label: "امین حاجی زاده",
+                                        }}
                                     />
                                 </td>
 
@@ -269,7 +301,10 @@ function Organizers() {
                                         onChange={(e) => {
                                             setShomaresh(e.value);
                                         }}
-                                        myValue={{ value: "0",label: "امین حاجی زاده"}}
+                                        myValue={{
+                                            value: "0",
+                                            label: "امین حاجی زاده",
+                                        }}
                                     />
                                 </td>
 
@@ -285,20 +320,29 @@ function Organizers() {
                                         onChange={(e) => {
                                             setTatbigh(e.value);
                                         }}
-                                        myValue={{ value: "0",label: "امین حاجی زاده"}}
+                                        myValue={{
+                                            value: "0",
+                                            label: "امین حاجی زاده",
+                                        }}
                                     />
                                 </td>
 
                                 <td className="parent-select-sarparast">
                                     <RSSelect
                                         options={[
-                                            { value: "0",label: "امین حاجی زاده"},
+                                            {
+                                                value: "0",
+                                                label: "امین حاجی زاده",
+                                            },
                                             { value: "1", label: "..." },
                                         ]}
                                         onChange={(e) => {
                                             setSarparast(e.value);
                                         }}
-                                       myValue={{ value: "0",label: "امین حاجی زاده"}}
+                                        myValue={{
+                                            value: "0",
+                                            label: "امین حاجی زاده",
+                                        }}
                                     />
                                 </td>
                             </tr>
