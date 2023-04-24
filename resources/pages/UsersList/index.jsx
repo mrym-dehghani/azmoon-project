@@ -12,6 +12,7 @@ function UsersList() {
             padding: "1.5rem",
             borderRadius: "1.6rem",
             marginTop: "1.5rem",
+            minHeight: "85vh"
         },
         inputStyle: {
             marginBottom: "0",
