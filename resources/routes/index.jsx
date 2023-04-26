@@ -9,6 +9,9 @@ import NewExam from '../pages/NewExam';
 import ListExams from '../pages/ListExams';
 import SignUp from '../pages/SignUp';
 import LogIn from '../pages/LogIn';
+import EditUser from './../pages/EditUser/index';
+import EditHozeList from './../pages/EditHozeList/index';
+import EditListExam from './../pages/EditListExams/index';
 
 export const routes = {
     NewUser: {
@@ -60,5 +63,20 @@ export const routes = {
         id:10,
         path: '/logIn',
         element: <LogIn/>,
+    },
+    EditUser: {
+        id:11,
+        path: '/editUser',
+        element: <EditUser/>,
+    },
+    EditHozeList: {
+        id:12,
+        path: '/editHozeList',
+        element: <EditHozeList/>,
+    },
+    EditListExam: {
+        id:13,
+        path: '/editListExam',
+        element: <EditListExam/>,
     },
 };

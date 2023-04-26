@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextField } from "../../components/TextField";
 import { RSSelect } from "../../components/Select";
 import { Form } from "react-bootstrap";
 import Dropzone from "react-dropzone";
 import { Button } from "../../components/Button";
 import { DatePicker } from "zaman";
+import { Loading } from "../../components/Loading";
+import axios from "axios";
 import "./style.css";
 
-function NewUser() {
+function EditUser() {
     const style = {
         divBody: {
             backgroundColor: "#F4F6F9",
@@ -51,7 +53,8 @@ function NewUser() {
     const [phoneNumber, setPhoneNumber] = useState();
     const [bankAccountNumber, setBankAccountNumber] = useState();
     const [address, setAddress] = useState();
-
+    const [data, setData] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
     const inputToken = document.querySelector("input").value;
 
     const handleSubmitForm = (e) => {
@@ -82,6 +85,7 @@ function NewUser() {
             formdata.append("account_number", bankAccountNumber);
             formdata.append("address", address);
             formdata.append("image", image);
+            formdata.append("_method", "PUT");
             formdata.append("_token", inputToken);
             console.log(formdata.getAll("_token"));
 
@@ -117,8 +121,29 @@ function NewUser() {
         </svg>`;
     };
 
-    return (
-        <Form style={style.divBody}>
+    useEffect(() => {
+        async function fetchData() {
+            setIsLoading(true);
+            try {
+                const response = await axios.get(
+                    "https://jsonplaceholder.typicode.com/users"
+                );
+                setData(response);
+            } catch (error) {
+                console.error(error);
+                setIsLoading(false);
+            } finally {
+                setIsLoading(false);
+            }
+        }
+        fetchData();
+    }, []);
+    if (isLoading) {
+        return <Loading/>
+    }
+    if (data) {
+        return (
+            <Form style={style.divBody}>
             <div>
                 <h1 className="fs-4">کاربر جدید</h1>
                 <p style={style.p} className="fs-6">
@@ -172,7 +197,6 @@ function NewUser() {
                             تاریخ تولد
                         </label>
                         <DatePicker
-                            className="input-datePiker"
                             onChange={(e) => {
                                 setBirthday(e.value.toLocaleDateString());
                             }}
@@ -399,7 +423,9 @@ function NewUser() {
                 <div>{isShowModal}</div>
             </div>
         </Form>
-    );
+        );
+    }
+    // return <div style={{ color: "black" }}>No data</div>;
 }
 
-export default NewUser;
+export default EditUser;

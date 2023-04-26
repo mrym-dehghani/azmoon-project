@@ -4,8 +4,8 @@ import { DatePicker } from "zaman";
 import { RSSelect } from "../Select";
 import { Button } from "../Button";
 import { useState } from "react";
-import { AddHoze } from "../addHoze";
-import { Children } from "react";
+import { AddHoze } from "../AddHoze";
+
 
 export function Nobat() {
     const style = {
@@ -32,11 +32,13 @@ export function Nobat() {
     const [uiShow, setUiShow] = useState();
     const [hozeNumber, setHozeNumber] = useState();
     const [hoze, setHoze] = useState([]);
-
+    // const [examId, setExamId] = useState();
     const [nobatName, setNobatName] = useState();
     const [tarikh, setTarikh] = useState();
-    const [nobat, setNobat] = useState("صبح");
+    const [nobat, setNobat] = useState("morning");
     const [show, setShow] = useState(false);
+
+    const inputToken = document.querySelector('input').value
 
     const handleSubmit = (e) => {
         createHoze();
@@ -49,17 +51,24 @@ export function Nobat() {
         }
 
         const data = {
-            nobatName,
-            tarikh,
-            nobat,
-            hozeNumber,
+            name:nobatName,
+            hold_date:tarikh,
+            turn:nobat,
+            num_of_areas:hozeNumber,
+            exam_id: " ",
+            _token: inputToken
         };
+
         console.log(data);
+
+        axios.post(`http://localhost:8000/newExam`, { data }).then((res) => {
+            console.log(res.data);
+        });
     };
 
     const createHoze = () => {
         for (let i = 0; i < hozeNumber; i++) {
-            hoze.push(<AddHoze key={Math.random()} />);
+            hoze.push(<AddHoze areaId={1} examId={2} sectionId={3} key={Math.random()} id={Math.random()} />);
         }
         console.log(hoze);
     };
@@ -69,8 +78,8 @@ export function Nobat() {
     };
 
     return (
-        <div className="add-new-exam">
-            <div className="d-flex align-items-center gap-2 mt-4 new-nobat">
+        <div className="add-new-exam pt-5">
+            <div className="d-flex align-items-center gap-2 mt-3 new-nobat">
                 <p style={style.p}>نوبت</p>
                 <button style={style.btn} onClick={toggleNobat}>
                     -
@@ -78,7 +87,7 @@ export function Nobat() {
             </div>
 
             <div className="parent-nobat">
-                <div className=" w-100 d-flex align-items-center mt-2 gap-5">
+                <div className=" w-100 d-flex align-items-center mt-3 gap-5">
                     <div className="w-20">
                         <div className="content">
                             <TextField
@@ -112,14 +121,13 @@ export function Nobat() {
                             </label>
                             <RSSelect
                                 options={[
-                                    { value: "0", label: "صبح" },
-                                    { value: "1", label: "عصر" },
+                                    { value: "morning", label: "صبح" },
+                                    { value: "evening", label: "عصر" },
                                 ]}
                                 onChange={(e) => {
                                     setNobat(e.value);
                                 }}
-                                defaultValue="صبح"
-                                placeholder="صبح"
+                                myValue={{ value: "morning", label: "صبح" }}  
                             />
                         </div>
                     </div>
