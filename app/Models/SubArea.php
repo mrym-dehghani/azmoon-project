@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class SubArea extends Model
 {
     use HasFactory;
+
+    protected $table = "sub_areas";
+
+    protected $fillable = [
+        "main_area_id",
+        "name"
+    ];
 }
