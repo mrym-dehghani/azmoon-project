@@ -14,4 +14,9 @@ class MainArea extends Model
     protected $fillable = [
         "name",
     ];
+
+    public function sub_areas()
+    {
+        return $this->hasMany(SubArea::class, "main_area_id");
+    }
 }

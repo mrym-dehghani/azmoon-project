@@ -18,4 +18,14 @@ class ExamOrganizerSection extends Model
         "sub_area_id",
         "sub_area_section"
     ];
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, "role_id");
+    }
+
+    public function organizer()
+    {
+        return $this->belongsTo(Organizer::class, "organizers_id");
+    }
 }

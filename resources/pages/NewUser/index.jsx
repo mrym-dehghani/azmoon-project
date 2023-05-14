@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, {
+    useEffect,
+    useState
+} from "react";
 import { TextField } from "../../components/TextField";
 import { RSSelect } from "../../components/Select";
 import { Form } from "react-bootstrap";
@@ -38,19 +41,22 @@ function NewUser() {
         },
     };
 
-    const [file, setFile] = useState();
-    const [firstName, setFirstName] = useState();
-    const [lastName, setLastName] = useState();
-    const [nationalCode, setNationalCode] = useState();
-    const [birthday, setBirthday] = useState();
-    const [maritalStatus, setMaritalStatus] = useState("0");
-    const [job, setJob] = useState("دانشجو");
-    const [gender, setGender] = useState("0");
-    const [jobPlace, setJobPlace] = useState("دانشگاه شیراز");
+    const [file, setFile] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [nationalCode, setNationalCode] = useState("");
+    const [birthday, setBirthday] = useState("");
+    const [maritalStatus, setMaritalStatus] = useState("no");
+    const [job, setJob] = useState("آزاد");
+    const [gender, setGender] = useState("male");
+    const [jobPlace, setJobPlace] = useState("سایر");
     const [education, setEducation] = useState("کارشناسی");
-    const [phoneNumber, setPhoneNumber] = useState();
-    const [bankAccountNumber, setBankAccountNumber] = useState();
-    const [address, setAddress] = useState();
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [bankAccountNumber, setBankAccountNumber] = useState("");
+    const [address, setAddress] = useState("");
+    const [selectJob,setSelectJob] = useState([]);
+    const [selectJobPlace,setSelectJobPlace] = useState([]);
+    const [selectEducation,setSelectEducation] = useState([]);
 
     const inputToken = document.querySelector("input").value;
 
@@ -66,13 +72,11 @@ function NewUser() {
         }
 
         const submitForm = async () => {
-            const image = await blobToBase64(file);
-
             const formdata = new FormData();
-            formdata.append("first-name", firstName);
+            formdata.append("first_name", firstName);
             formdata.append("last_name", lastName);
             formdata.append("international_code", nationalCode);
-            formdata.append("birth_day", birthday);
+            formdata.append("birth_date", birthday);
             formdata.append("gender", gender);
             formdata.append("marriage", maritalStatus);
             formdata.append("job", job);
@@ -81,14 +85,18 @@ function NewUser() {
             formdata.append("phone_number", phoneNumber);
             formdata.append("account_number", bankAccountNumber);
             formdata.append("address", address);
-            formdata.append("image", image);
+            if(file !== undefined && file !== "")
+            {
+                const image = await blobToBase64(file);
+                formdata.append("image", image);
+            }
             formdata.append("_token", inputToken);
-            console.log(formdata.getAll("_token"));
+            console.log(formdata.getAll("image"));
 
-            const url= "http://localhost:8000"
+            // const url= "http://localhost:8000"
 
             axios
-                .post(`${url}/newUser`, { formdata })
+                .post(`/organizers/new`, formdata)
                 .then((res) => {
                     console.log(res.data.status);
                 });
@@ -116,6 +124,20 @@ function NewUser() {
         <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
         </svg>`;
     };
+
+    useEffect(() => {
+        axios.get("/organizers/organizers_factors").then((response) => {
+            const resp = response.data;
+
+            if(resp.status === 1)
+            {
+                setSelectJob(resp.data.job);
+                setSelectJobPlace(resp.data.job_place);
+                setSelectEducation(resp.data.education);
+                console.log(resp.data.education)
+            }
+        })
+    },[]);
 
     return (
         <Form style={style.divBody}>
@@ -189,7 +211,6 @@ function NewUser() {
                             options={[
                                 { value: "female", label: "زن" },
                                 { value: "male", label: "مرد" },
-                                { value: "other", label: "دیگر" },
                             ]}
                             onChange={(e) => {
                                 setGender(e.value);
@@ -210,13 +231,14 @@ function NewUser() {
                         </label>
                         <RSSelect
                             options={[
-                                { value: "0", label: "مجرد" },
-                                { value: "1", label: "متاهل" },
+                                { value: "no", label: "مجرد" },
+                                { value: "yse", label: "متاهل" },
+                                { value: "unknown", label: "نامشخص" },
                             ]}
                             onChange={(e) => {
                                 setMaritalStatus(e.value);
                             }}
-                            myValue={{ label: "مجرد", value: "0" }}
+                            myValue={{ label: "مجرد", value: "no" }}
                         />
                     </div>
                 </div>
@@ -227,15 +249,13 @@ function NewUser() {
                             وضعیت شغلی
                         </label>
                         <RSSelect
-                            options={[
-                                { value: "0", label: "دانشجو" },
-                                { value: "1", label: "شاغل" },
-                                { value: "2", label: "بیکار" },
-                            ]}
+                            options={selectJob.map((job) => {
+                                return {label:job , value:job}
+                            })}
                             onChange={(e) => {
                                 setJob(e.value);
                             }}
-                            myValue={{ label: "دانشجو", value: "0" }}
+                            myValue={{ label: "آزاد", value: "آزاد" }}
                         />
                     </div>
                 </div>
@@ -246,17 +266,13 @@ function NewUser() {
                             محل اشتغال
                         </label>
                         <RSSelect
-                            options={[
-                                {
-                                    value: "0 ",
-                                    label: " دانشگاه شیراز",
-                                },
-                                { value: "...", label: "..." },
-                            ]}
+                            options={selectJobPlace.map((job) => {
+                                return {label:job , value:job}
+                            })}
                             onChange={(e) => {
                                 setJobPlace(e.value);
                             }}
-                            myValue={{ label: "دانشگاه شیراز", value: "0" }}
+                            myValue={{ label: "سایر", value: "سایر" }}
                         />
                     </div>
                 </div>
@@ -267,20 +283,15 @@ function NewUser() {
                             وضعیت تحصیلی
                         </label>
                         <RSSelect
-                            options={[
-                                { value: "کارشناسی", label: "کارشناسی" },
-                                {
-                                    value: "کارشناسی ارشد",
-                                    label: "کارشناسی ارشد",
-                                },
-                                { value: "...", label: "..." },
-                            ]}
+                            options={selectEducation.map((job) => {
+                                return {label:job , value:job}
+                            })}
                             onChange={(e) => {
                                 setEducation(e.value);
                             }}
                             myValue={{
-                                label: "کارشناسی ارشد",
-                                value: "کارشناسی ارشد",
+                                label: "کارشناسی",
+                                value: "کارشناسی",
                             }}
                         />
                     </div>

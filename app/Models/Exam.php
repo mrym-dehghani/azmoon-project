@@ -16,4 +16,9 @@ class Exam extends Model
         "num_of_shifts",
         "has_finished"
     ];
+
+    public function shifts()
+    {
+        return $this->hasMany(ExamShift::class,"exam_id");
+    }
 }

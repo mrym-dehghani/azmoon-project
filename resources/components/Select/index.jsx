@@ -11,7 +11,6 @@ export function RSSelect(props) {
             styles={{
                 control: (baseStyles, state) => ({
                     ...baseStyles,
-                    border: "none",
                     height: "3.5rem",
                     marginTop: ".6rem",
                     border: "none",

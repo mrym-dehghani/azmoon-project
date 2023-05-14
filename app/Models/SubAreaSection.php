@@ -17,4 +17,9 @@ class SubAreaSection extends Model
         "capacity",
         "sub_area_id"
     ];
+
+    public function sub_area()
+    {
+        return $this->belongsTo(SubArea::class, "sub_area_id");
+    }
 }

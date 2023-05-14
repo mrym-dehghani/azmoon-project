@@ -17,4 +17,14 @@ class ExamOrganizerInfo extends Model
         "role_id",
         "sub_area_id",
     ];
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, "role_id");
+    }
+
+    public function organizer()
+    {
+        return $this->belongsTo(Organizer::class, "organizers_id");
+    }
 }

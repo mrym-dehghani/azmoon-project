@@ -29,10 +29,10 @@ export default function App() {
 
 if (document.getElementById("root")) {
     createRoot(document.getElementById("root")).render(
-        <React.StrictMode>
+        <>
             <BrowserRouter>
                 <App />
             </BrowserRouter>
-        </React.StrictMode>
+        </>
     );
 }

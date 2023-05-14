@@ -15,4 +15,14 @@ class SubArea extends Model
         "main_area_id",
         "name"
     ];
+
+    public function main_area()
+    {
+        return $this->belongsTo(MainArea::class, "main_area_id");
+    }
+
+    public function sections()
+    {
+        return $this->hasMany(SubAreaSection::class, "sub_area_id");
+    }
 }
